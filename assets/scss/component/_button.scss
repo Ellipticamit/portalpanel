@@ -1,0 +1,91 @@
+.btn {
+  padding: 12px 25px;
+
+  cursor: pointer;
+
+  &__primary {
+    color: white;
+  }
+
+  &__submit {
+    padding: 10px;
+    letter-spacing: 1px;
+    font-size: 1rem;
+  }
+
+  &__corner {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    &:hover,
+    &:active,
+    &:focus {
+      border-top-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 0;
+      color: white;
+    }
+  }
+}
+
+.btn2 {
+  padding: 12px 35px;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: $primary;
+  background-color: white;
+
+  &-link {
+    padding: 0;
+    border: 0;
+    i {
+      height: 45px;
+      width: 45px;
+      line-height: 45px;
+      text-align: center;
+      border-radius: 50%;
+      box-shadow: 0px 15px 20px rgba(31, 66, 135, 0.1);
+      font-size: 24px;
+      background-color: $primary;
+      color: white;
+      display: inline-block;
+      overflow: hidden;
+    }
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  &:hover {
+    color: #4b22ff;
+
+    i {
+      &:before {
+        display: inline-block;
+        -webkit-animation: toLeftFromRight 0.5s forwards;
+        -moz-animation: toLeftFromRight 0.5s forwards;
+        animation: toLeftFromRight 0.5s forwards;
+      }
+    }
+  }
+}
+
+.gradient {
+  background-image: linear-gradient(
+    to right,
+    $primary 0,
+    darken($primary, 10) 51%,
+    $primary 100%
+  );
+  background-size: 200%;
+  border-color: transparent !important;
+  transition: all 0.5s;
+}

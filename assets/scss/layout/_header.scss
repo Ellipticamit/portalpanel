@@ -1,0 +1,193 @@
+//site header
+.header__transparent {
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.home__header,
+.header__transparent .is-fixed {
+  .menu {
+    &__link {
+      a {
+        font-size: 15px;
+        font-weight: 600;
+        color: $dark;
+        padding: 0px 10px;
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+header {
+  .main_bar {
+    position: relative;
+    width: 100%;
+    padding: 20px 0px;
+  }
+
+  .is-fixed {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.5s;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .menu__container {
+    @include flex_center;
+    .menu__logo {
+      display: none;
+    }
+  }
+
+  .menu {
+    @include flex_center;
+
+    &__link {
+      a {
+        font-size: 15px;
+        font-weight: 600;
+        color: white;
+        padding: 0px 10px;
+        &:hover {
+          color: $dark;
+        }
+      }
+    }
+  }
+
+  .auth__btn {
+    @include flex_center;
+    flex-wrap: nowrap;
+    margin-left: 15px;
+
+    .btn {
+      margin-left: 10px;
+      font-size: 14px;
+    }
+  }
+
+  .ham__burger {
+    position: relative;
+    width: 28px;
+    height: 14px;
+    display: none;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+
+    @include respond('phone-land') {
+      display: block;
+    }
+
+    span {
+      background: $dark;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      border-radius: 1px;
+      transition: 0.25s ease-in-out;
+      opacity: 1;
+
+      &:first-child {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        top: 7px;
+      }
+
+      &:last-child {
+        top: 14px;
+      }
+    }
+  }
+
+  .ham__burger.open {
+    span {
+      &:first-child {
+        transform: rotate(135deg);
+        top: 7px;
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:last-child {
+        top: 7px;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+
+  @include respond('phone-land') {
+    .menu__container {
+      position: fixed;
+      overflow-y: scroll;
+      height: 100vh;
+      top: 0;
+      left: 280px;
+      transition: all 0.5s;
+      display: none;
+
+      flex-direction: column;
+      align-items: flex-start;
+
+      .menu__logo {
+        padding: 20px;
+        width: 100%;
+        display: block;
+      }
+    }
+
+    .menu__container.show {
+      width: 280px;
+      background: white;
+      left: -1px;
+      display: block;
+      transition: all 0.8s;
+    }
+
+    .menu {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+
+      padding: 0px 20px;
+
+      li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+      }
+
+      &__link {
+        padding: 8px 0px;
+      }
+    }
+
+    .auth__btn {
+      flex-direction: column;
+      margin-left: 0px;
+      padding: 0px 20px;
+      width: 100%;
+
+      .btn {
+        margin: 20px 0px -10px;
+      }
+    }
+  }
+}

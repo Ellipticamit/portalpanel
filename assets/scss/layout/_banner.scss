@@ -1,0 +1,57 @@
+.banner {
+  background-image: url(/images/main-slider/slider1/pic2.png);
+  background-position: 0 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+  z-index: 100;
+
+  &__inner {
+    padding-top: 20vh;
+  }
+
+  &__bg_img1 {
+    position: absolute;
+    left: 100px;
+    bottom: 50px;
+  }
+
+  &__bg_img2 {
+    position: absolute;
+    right: 0;
+    top: 120px;
+  }
+
+  &__content {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+
+    &__texts {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1 0 50%;
+    }
+
+    &__img {
+      flex: 1 0 50%;
+    }
+  }
+
+  &__btns {
+    @include flex_center;
+    flex-wrap: nowrap;
+
+    .btn {
+      padding: 10px !important;
+      display: flex;
+      align-items: flex-start;
+
+      a {
+        color: white;
+      }
+    }
+  }
+}

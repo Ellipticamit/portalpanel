@@ -1,0 +1,25 @@
+.move {
+  &_box {
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      &:first-child {
+        position: unset;
+      }
+    }
+  }
+
+  &_1 {
+    animation: move1 5s infinite;
+  }
+
+  &_2 {
+    animation: move2 5s infinite;
+  }
+}

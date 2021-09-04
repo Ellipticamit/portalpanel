@@ -1,0 +1,21 @@
+.footer {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  background-color: #896eff;
+  color: #ffffff;
+
+  &__top {
+    padding: 70px 0px 30px;
+  }
+
+  &__bottom {
+    text-align: center;
+    background-color: #b3a1ff;
+    font-size: 15px;
+    padding: 15px 0;
+  }
+
+  &__info {
+  }
+}

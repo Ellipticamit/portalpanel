@@ -1,0 +1,38 @@
+{
+  "name": "portal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "sass": "node-sass --watch assets/scss/main.scss assets/css/global.css --source-map assets/css/global.css.map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ellipticamit/portal.git"
+  },
+  "keywords": [
+    "Portal"
+  ],
+  "author": "Amit Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ellipticamit/portal/issues"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bad-words": "^3.0.4",
+    "next": "^11.1.0",
+    "next-connect": "^0.10.2",
+    "node-sass": "^6.0.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
+    "react-dom": "^17.0.2",
+    "serverless-mysql": "^1.5.4",
+    "use-scroll-position": "^0.0.4",
+    "wowjs": "^1.1.3"
+  }
+}

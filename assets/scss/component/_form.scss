@@ -1,0 +1,54 @@
+.form__group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 0.9rem;
+    color: $dark;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+
+    &-prepend {
+      position: absolute;
+      left: 10px;
+      top: 22.5px;
+      z-index: 99;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      background-color: transparent;
+      border-right: 1px solid $dark;
+      margin-right: 10px;
+    }
+
+    &-text {
+      justify-content: center;
+      padding: 0;
+      width: 40px;
+      height: 20px;
+      background-color: transparent;
+      border: 0px;
+      i {
+        color: $dark;
+        font-size: 18px;
+      }
+    }
+
+    .form-control {
+      padding: 10px 20px 10px 65px;
+      box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1);
+      height: 45px;
+      border-radius: 1.5rem !important;
+      position: relative;
+      font-size: 15px;
+      transition: all 0.3s ease-in-out;
+      background: #fff;
+      border: 1px solid transparent;
+      font-weight: 400;
+      color: #888;
+    }
+  }
+}

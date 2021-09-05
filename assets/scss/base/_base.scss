@@ -107,3 +107,9 @@ button:focus {
 .relative {
   position: relative;
 }
+
+@include respond('tab-port') {
+  .container {
+    max-width: 97%;
+  }
+}

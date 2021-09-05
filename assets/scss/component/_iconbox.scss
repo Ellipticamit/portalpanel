@@ -5,6 +5,12 @@
     margin-left: 100px;
   }
 
+  @include respond('phone') {
+    &:nth-child(2) {
+      margin-left: 0px;
+    }
+  }
+
   &.box-anim-1 {
     display: flex;
     align-items: center;

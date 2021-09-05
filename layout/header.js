@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import {useState} from 'react';
-import Image from 'next/image';
+import Link from 'next/link'
+import { useState } from 'react'
+import Image from 'next/image'
 
-function Header({homeheader}) {
-  const [show, setShow] = useState(false);
+function Header ({ homeheader }) {
+  const [show, setShow] = useState(false)
   return (
     <>
       <header className={`header__site header__transparent ${homeheader}`}>
@@ -20,36 +20,26 @@ function Header({homeheader}) {
               <div className='menu__logo'>Menu Logo</div>
               <ul className='menu'>
                 <li className='menu__link'>
-                  <Link href='/'>
-                    <a>Home</a>
-                  </Link>
+                  <a href='/'>Home</a>
                 </li>
                 <li className='menu__link'>
-                  <Link href='/'>
-                    <a>About Us</a>
-                  </Link>
+                  <a href='/'>About Us</a>
                 </li>
                 <li className='menu__link'>
-                  <Link href='/contact'>
-                    <a>Contact Us</a>
-                  </Link>
+                  <a href='/contact'>Contact Us</a>
                 </li>
               </ul>
               <div className='auth__btn'>
-                <Link href='/login'>
-                  <a>
-                    <div className='btn btn__corner gradient btn__primary'>
-                      Login
-                    </div>
-                  </a>
-                </Link>
-                <Link href='/register'>
-                  <a>
-                    <div className='btn btn__corner gradient btn__primary'>
-                      Register
-                    </div>
-                  </a>
-                </Link>
+                <a href='/login'>
+                  <div className='btn btn__corner gradient btn__primary'>
+                    Login
+                  </div>
+                </a>
+                <a href='/register'>
+                  <div className='btn btn__corner gradient btn__primary'>
+                    Register
+                  </div>
+                </a>
               </div>
             </div>
 
@@ -65,7 +55,7 @@ function Header({homeheader}) {
         </div>
       </header>
     </>
-  );
+  )
 }
 
-export default Header;
+export default Header

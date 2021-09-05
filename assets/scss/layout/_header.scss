@@ -20,13 +20,18 @@
       }
     }
   }
+  .ham__burger {
+    span {
+      background: $dark;
+    }
+  }
 }
 
 header {
   .main_bar {
     position: relative;
     width: 100%;
-    padding: 20px 0px;
+    padding: 12px 0px;
   }
 
   .is-fixed {
@@ -94,7 +99,7 @@ header {
     }
 
     span {
-      background: $dark;
+      background: white;
       position: absolute;
       width: 100%;
       height: 2px;
@@ -132,9 +137,43 @@ header {
         transform: rotate(-135deg);
       }
     }
+
+    &:hover {
+      z-index: 99;
+      &:after {
+        background-color: rgba(0, 0, 0, 0.6);
+        content: '';
+        left: 0;
+        position: fixed;
+        right: -20px;
+        top: -63px;
+        transform: scale(100);
+        -o-transform: scale(100);
+        -moz-transform: scale(100);
+        -webkit-transform: scale(100);
+        width: 100%;
+        z-index: -1;
+        transition: all 0.5s;
+        transform-origin: top right;
+        margin: 0 0px 0px 20px;
+        -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.6);
+      }
+      span {
+        background: #fff;
+      }
+    }
   }
 
   @include respond('phone-land') {
+    .is-fixed {
+      .ham__burger {
+        span {
+          background: $dark;
+        }
+      }
+    }
+
     .menu__container {
       position: fixed;
       overflow-y: scroll;
@@ -143,6 +182,7 @@ header {
       left: 280px;
       transition: all 0.5s;
       display: none;
+      z-index: 1000;
 
       flex-direction: column;
       align-items: flex-start;
@@ -172,6 +212,10 @@ header {
       li {
         width: 100%;
         border-bottom: 1px solid #eee;
+
+        a {
+          color: $dark;
+        }
       }
 
       &__link {
@@ -184,9 +228,11 @@ header {
       margin-left: 0px;
       padding: 0px 20px;
       width: 100%;
+      align-items: stretch;
 
       .btn {
         margin: 20px 0px -10px;
+        width: 100%;
       }
     }
   }

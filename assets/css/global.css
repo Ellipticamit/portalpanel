@@ -171,6 +171,10 @@ button:focus {
 .relative {
   position: relative; }
 
+@media only screen and (max-width: 991px) {
+  .container {
+    max-width: 97%; } }
+
 .move_box {
   position: relative; }
   .move_box img {
@@ -335,11 +339,11 @@ h5 {
 
 @media only screen and (max-width: 575px) {
   h1 {
-    font-size: 3rem; }
+    font-size: 2.9rem; }
   h2 {
-    font-size: 2.3rem; }
+    font-size: 2rem; }
   h3 {
-    font-size: 1.6rem; } }
+    font-size: 1.5rem; } }
 
 .btn {
   padding: 12px 25px;
@@ -451,6 +455,9 @@ h5 {
   position: relative; }
   .icon-box-wrapper:nth-child(2) {
     margin-left: 100px; }
+  @media only screen and (max-width: 575px) {
+    .icon-box-wrapper:nth-child(2) {
+      margin-left: 0px; } }
   .icon-box-wrapper.box-anim-1 {
     display: flex;
     align-items: center; }
@@ -600,7 +607,7 @@ h5 {
 
 .page__banner {
   background: #faf8f2;
-  height: 250px;
+  height: 225px;
   background-size: cover;
   background-position: 50%;
   position: relative;
@@ -610,7 +617,7 @@ h5 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 250px;
+    height: 225px;
     position: relative;
     z-index: 10000;
     padding-top: 30px; }
@@ -620,7 +627,7 @@ h5 {
 
 .page__inner__content {
   background-image: url("/images/background/bg1.png");
-  padding: 100px 0px 70px; }
+  padding: 80px 0px 70px; }
   .page__inner__content__top {
     margin-bottom: 40px; }
     .page__inner__content__top .sub_title {
@@ -684,6 +691,22 @@ h5 {
       align-items: flex-start; }
       .banner__btns .btn a {
         color: white; }
+  @media only screen and (max-width: 767px) {
+    .banner {
+      height: 100%; }
+      .banner__inner {
+        padding-top: 16vh; }
+      .banner__content {
+        flex-direction: column; }
+        .banner__content__texts {
+          margin-bottom: 15px; }
+        .banner__content__img {
+          width: 70%;
+          margin: 20px auto 45px; } }
+  @media only screen and (max-width: 425px) {
+    .banner__btns {
+      flex-direction: column;
+      align-items: flex-start; } }
 
 .header__transparent {
   position: absolute;
@@ -700,10 +723,14 @@ h5 {
   .header__transparent .is-fixed .menu__link a:hover {
     color: #896eff; }
 
+.home__header .ham__burger span,
+.header__transparent .is-fixed .ham__burger span {
+  background: #262f5a; }
+
 header .main_bar {
   position: relative;
   width: 100%;
-  padding: 20px 0px; }
+  padding: 12px 0px; }
 
 header .is-fixed {
   background-color: white;
@@ -762,7 +789,7 @@ header .ham__burger {
     header .ham__burger {
       display: block; } }
   header .ham__burger span {
-    background: #262f5a;
+    background: white;
     position: absolute;
     width: 100%;
     height: 2px;
@@ -787,7 +814,32 @@ header .ham__burger.open span:last-child {
   top: 7px;
   transform: rotate(-135deg); }
 
+header .ham__burger.open:hover {
+  z-index: 99; }
+  header .ham__burger.open:hover:after {
+    background-color: rgba(0, 0, 0, 0.6);
+    content: '';
+    left: 0;
+    position: fixed;
+    right: -20px;
+    top: -63px;
+    transform: scale(100);
+    -o-transform: scale(100);
+    -moz-transform: scale(100);
+    -webkit-transform: scale(100);
+    width: 100%;
+    z-index: -1;
+    transition: all 0.5s;
+    transform-origin: top right;
+    margin: 0 0px 0px 20px;
+    -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.6); }
+  header .ham__burger.open:hover span {
+    background: #fff; }
+
 @media only screen and (max-width: 767px) {
+  header .is-fixed .ham__burger span {
+    background: #262f5a; }
   header .menu__container {
     position: fixed;
     overflow-y: scroll;
@@ -796,6 +848,7 @@ header .ham__burger.open span:last-child {
     left: 280px;
     transition: all 0.5s;
     display: none;
+    z-index: 1000;
     flex-direction: column;
     align-items: flex-start; }
     header .menu__container .menu__logo {
@@ -816,15 +869,19 @@ header .ham__burger.open span:last-child {
     header .menu li {
       width: 100%;
       border-bottom: 1px solid #eee; }
+      header .menu li a {
+        color: #262f5a; }
     header .menu__link {
       padding: 8px 0px; }
   header .auth__btn {
     flex-direction: column;
     margin-left: 0px;
     padding: 0px 20px;
-    width: 100%; }
+    width: 100%;
+    align-items: stretch; }
     header .auth__btn .btn {
-      margin: 20px 0px -10px; } }
+      margin: 20px 0px -10px;
+      width: 100%; } }
 
 .footer {
   background-repeat: no-repeat;

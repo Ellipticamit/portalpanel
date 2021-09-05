@@ -1,7 +1,7 @@
-import {useState} from 'react';
-import axios from 'axios';
-import Input from 'components/Input';
-import {getErrorMessage, checkMessage} from 'utility/ValidationMessage';
+import { useState } from 'react'
+import axios from 'axios'
+import Input from 'components/Input'
+import { getErrorMessage, checkMessage } from 'utility/ValidationMessage'
 
 const data = {
   name: '',
@@ -9,49 +9,49 @@ const data = {
   mobile: '',
   password: '',
   experience: '',
-  expertise: '',
-};
+  expertise: ''
+}
 
-function RegisterForm(props) {
-  const [formData, setFormData] = useState(data);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState({});
+function RegisterForm (props) {
+  const [formData, setFormData] = useState(data)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [errorMessage, setErrorMessage] = useState({})
 
   const handleChange = (name, value) => {
     setFormData({
       ...formData,
-      [name]: value,
-    });
-    setErrorMessage(getErrorMessage(formData));
-  };
+      [name]: value
+    })
+    setErrorMessage(getErrorMessage(formData))
+  }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault()
 
-    const errMessageObj = getErrorMessage(formData);
+    const errMessageObj = getErrorMessage(formData)
     if (checkMessage(errMessageObj)) {
-      setErrorMessage(errMessageObj);
+      setErrorMessage(errMessageObj)
 
-      console.log(errMessageObj);
+      console.log(errMessageObj)
     } else {
-      const response = await axios.post('/api/register', formData);
+      const response = await axios.post('/api/register', formData)
       const {
-        data: {message},
-      } = response;
+        data: { message }
+      } = response
 
       if (message === 'success') {
-        setSubmitSuccess(true);
-        setFormData(data);
+        setSubmitSuccess(true)
+        setFormData(data)
       }
     }
-  };
+  }
 
-  const {name, email, mobile, password, experience, expertise} = formData;
+  const { name, email, mobile, password, experience, expertise } = formData
 
   return (
     <form onSubmit={handleSubmit}>
       <div className='row'>
-        <div className='col-sm-6'>
+        <div className='col-md-6'>
           <Input
             iconname='user'
             label='Full Name'
@@ -64,7 +64,7 @@ function RegisterForm(props) {
             propvalue={name}
           />
         </div>
-        <div className='col-sm-6'>
+        <div className='col-md-6'>
           <Input
             iconname='envelope'
             label='Email'
@@ -77,7 +77,7 @@ function RegisterForm(props) {
             propvalue={email}
           />
         </div>
-        <div className='col-sm-6'>
+        <div className='col-md-6'>
           <Input
             iconname='mobile'
             label='Mobile Number'
@@ -90,7 +90,7 @@ function RegisterForm(props) {
             propvalue={mobile}
           />
         </div>
-        <div className='col-sm-6'>
+        <div className='col-md-6'>
           <Input
             iconname='lock'
             label='Password'
@@ -103,7 +103,7 @@ function RegisterForm(props) {
             propvalue={password}
           />
         </div>
-        <div className='col-sm-6'>
+        <div className='col-md-6'>
           <Input
             iconname='graduation-cap'
             label='Year of Experience'
@@ -116,7 +116,7 @@ function RegisterForm(props) {
             propvalue={experience}
           />
         </div>
-        <div className='col-sm-6'>
+        <div className='col-md-6'>
           <Input
             iconname='trophy'
             label='Area of Expertise'
@@ -144,7 +144,7 @@ function RegisterForm(props) {
         <span className='required'>*</span> Fields are mandatory.
       </div>
     </form>
-  );
+  )
 }
 
-export default RegisterForm;
+export default RegisterForm

@@ -68,6 +68,91 @@ header {
     }
   }
 
+  .auth__menu {
+    @include flex_center;
+    flex-wrap: nowrap;
+    margin-left: 15px;
+
+    .btn {
+      margin-left: 10px;
+      font-size: 14px;
+    }
+
+    li {
+      position: relative;
+      .sub-menu {
+        background-color: #fff;
+        display: block;
+        top: 60px;
+        left: 0;
+        list-style: none;
+        opacity: 1;
+        padding: 5px 0;
+        position: absolute;
+        visibility: hidden;
+        width: 175px;
+        z-index: 10;
+        margin-top: 20px;
+        box-shadow: 0px 1px 40px 0px rgba(0, 0, 0, 0.1);
+        @include transitionSlow;
+
+        li {
+          position: relative;
+          a {
+            color: #262f5a;
+            display: block;
+            font-size: 15px;
+            padding: 10px 25px;
+            text-transform: capitalize;
+            position: relative;
+            transition: all 0.15s linear;
+            -webkit-transition: all 0.15s linear;
+            -moz-transition: all 0.15s linear;
+            -o-transition: all 0.15s linear;
+            font-weight: 500;
+
+            &:after {
+              content: '';
+              position: absolute;
+              width: 0;
+              height: 1px;
+              background: $primary;
+
+              left: 20px;
+              top: 20px;
+              transition: all 0.5s;
+              -moz-transition: all 0.5s;
+              -webkit-transition: all 0.5s;
+              -ms-transition: all 0.5s;
+              -o-transition: all 0.5s;
+            }
+          }
+          &:hover > a {
+            background-color: #f2f2f2;
+            padding: 10px 20px 10px 35px;
+            color: $primary;
+            @include respond('tab-port') {
+              padding: 2px 0 1px 15px;
+              background: transparent;
+            }
+            &:after {
+              width: 10px;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        & > .sub-menu {
+          opacity: 1;
+          visibility: visible;
+          margin-top: 0;
+          @include transitionMedium;
+        }
+      }
+    }
+  }
+
   .auth__btn {
     @include flex_center;
     flex-wrap: nowrap;
@@ -206,6 +291,7 @@ header {
       flex-direction: column;
       align-items: flex-start;
       width: 100%;
+      margin-bottom: 10px;
 
       padding: 0px 20px;
 
@@ -223,15 +309,24 @@ header {
       }
     }
 
-    .auth__btn {
+    .auth__menu {
       flex-direction: column;
       margin-left: 0px;
       padding: 0px 20px;
       width: 100%;
       align-items: stretch;
 
+      li {
+        width: 100%;
+
+        .sub-menu {
+          top: 75px;
+          width: 100%;
+        }
+      }
+
       .btn {
-        margin: 20px 0px -10px;
+        margin: 20px 0px -5px;
         width: 100%;
       }
     }

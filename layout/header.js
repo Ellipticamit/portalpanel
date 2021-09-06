@@ -1,9 +1,9 @@
-import Link from 'next/link'
-import { useState } from 'react'
-import Image from 'next/image'
+import Link from 'next/link';
+import {useState} from 'react';
+import Image from 'next/image';
 
-function Header ({ homeheader }) {
-  const [show, setShow] = useState(false)
+function Header({homeheader}) {
+  const [show, setShow] = useState(false);
   return (
     <>
       <header className={`header__site header__transparent ${homeheader}`}>
@@ -29,18 +29,28 @@ function Header ({ homeheader }) {
                   <a href='/contact'>Contact Us</a>
                 </li>
               </ul>
-              <div className='auth__btn'>
-                <a href='/login'>
-                  <div className='btn btn__corner gradient btn__primary'>
-                    Login
-                  </div>
-                </a>
-                <a href='/register'>
+              <ul className='auth__menu'>
+                <li>
+                  <a href='/login'>
+                    <div className='btn btn__corner gradient btn__primary'>
+                      Login
+                    </div>
+                  </a>
+                </li>
+                <li>
                   <div className='btn btn__corner gradient btn__primary'>
                     Register
                   </div>
-                </a>
-              </div>
+                  <ul className='sub-menu'>
+                    <li>
+                      <a href='/client/register'>As Client</a>
+                    </li>
+                    <li>
+                      <a href='/expert/register'>As Expert</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </div>
 
             <div
@@ -55,7 +65,7 @@ function Header ({ homeheader }) {
         </div>
       </header>
     </>
-  )
+  );
 }
 
-export default Header
+export default Header;

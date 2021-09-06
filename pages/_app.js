@@ -6,6 +6,9 @@ import Layout from 'layout';
 import useScrollPosition from 'use-scroll-position';
 import {useRouter} from 'next/router';
 
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+
 function MyApp({Component, pageProps}) {
   const [header_, setHeader_] = useState();
 

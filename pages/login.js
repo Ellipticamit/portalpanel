@@ -15,7 +15,7 @@ function login(props) {
               data-wow-delay='0.2s'
             >
               <div className='page__inner__content__top'>
-                <h6 className='sub_title bgl__primary m-b20 text_primary'>
+                <h6 className='sub_title bgl-primary m-b20 text-primary'>
                   Login
                 </h6>
               </div>

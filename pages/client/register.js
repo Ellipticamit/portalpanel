@@ -1,7 +1,9 @@
-import RegisterForm from 'elements/RegisterForm';
+import React from 'react';
 import PageBanner from 'components/PageBanner';
+import RegisterForm from 'components/RegisterForm';
+import {ClientFormData, ClientRegisterFields} from 'utility/constant';
 
-function register(props) {
+function ClientRegister(props) {
   return (
     <section className='register'>
       <PageBanner
@@ -9,7 +11,6 @@ function register(props) {
         heading='Page Heading'
         sub_heading='Page SUb Heading'
       />
-
       <div className='page__inner__content'>
         <div className='container'>
           <div className='row'>
@@ -20,14 +21,17 @@ function register(props) {
             >
               <div className='page__inner__content__top'>
                 <h6 className='sub_title bgl-primary m-b20 text-primary'>
-                  Register
+                  Register as Client
                 </h6>
                 <h2 className='title'>
                   We Love To Help Great Companies To Enlarge Their Revenues.
                 </h2>
               </div>
               <div className='page__inner__content__form'>
-                <RegisterForm />
+                <RegisterForm
+                  data={ClientFormData}
+                  fields={ClientRegisterFields}
+                />
               </div>
             </div>
             {/*
@@ -44,4 +48,4 @@ function register(props) {
   );
 }
 
-export default register;
+export default ClientRegister;

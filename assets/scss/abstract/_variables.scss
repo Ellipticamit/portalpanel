@@ -11,6 +11,10 @@ $ignore-warning: true;
   );
 }
 
+// Body
+$body-bg: #fff;
+$body-color: #888;
+
 // Color
 $primary: #896eff;
 $secondary: #1f2471 !default;
@@ -34,6 +38,35 @@ $h3-font-size: 2rem;
 $h4-font-size: 1.5625rem;
 $h5-font-size: 1.25rem;
 $h6-font-size: 0.875rem;
+
+$text-muted: #aeaed5;
+$colors: () !default;
+
+$heading-primary-size: 1.8rem;
+$sub-heading-size: 1.6rem !default;
+$grid-gutter-width: 30px;
+$dropdown-lik-color: $body-color;
+$border-color: #e1e1f0;
+$headings-color: #000 !default;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1199px,
+) !default;
+
+$input-btn-focus-width: 0rem !default;
+$border-radius-base: 4px !default;
+$shadow-color: rgba(160, 159, 202, 0.15);
+$border-radius: 1.5rem;
 
 $large-font: 4rem;
 

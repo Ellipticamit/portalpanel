@@ -6,16 +6,16 @@
   @include flex_center;
 }
 
-.bg__white {
-  background: #ffffff !important;
+.bg-white {
+  background-color: #ffffff !important;
 }
 
-.text_primary {
-  color: $primary;
+.text-primary {
+  color: $primary !important;
 }
 
-.bg_primary {
-  background: $primary;
+.bg-primary {
+  background-color: $primary !important;
 }
 
 .overlay_primary_dark {
@@ -56,17 +56,53 @@
 }
 
 // bg light
-.bgl__primary {
+.bgl-primary {
   background-color: $primary-light;
+}
+
+.bgl-secondary {
+  background-color: $secondary-light;
+}
+
+.bgl-success {
+  background-color: $success-light;
+}
+
+.bgl-warning {
+  background-color: $warning-light;
+}
+
+.bgl-danger {
+  background-color: $danger-light;
+}
+
+.bgl-info {
+  background-color: $info-light;
+}
+
+.bgl-dark {
+  background-color: $dark-light;
+}
+
+.bgl-light {
+  background-color: $white-light;
+}
+
+.bgl-yellow {
+  background-color: $yellow-light;
 }
 
 .content__inner {
   padding-top: 100px;
-  padding-bottom: 0px;
+  padding-bottom: 70px;
 }
 
 .text-red {
   color: $danger;
+}
+
+.text-white {
+  color: white;
 }
 
 .shadow-yellow {

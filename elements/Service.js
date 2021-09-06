@@ -10,9 +10,7 @@ function Service(props) {
     >
       <div className='container'>
         <div className='section-head text-center'>
-          <h6 className='sub-title bgl__primary m-b20 text_primary'>
-            Services
-          </h6>
+          <h6 className='sub-title bgl-primary m-b20 text-primary'>Services</h6>
           <h2 className='title'>Provide Awesome Service To You</h2>
         </div>
         <div className='row'>

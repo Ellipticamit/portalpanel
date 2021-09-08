@@ -1,62 +1,55 @@
 import {useState} from 'react';
 import axios from 'axios';
+import {useForm} from 'react-hook-form';
 import Input from 'components/Input';
-import {getErrorMessage, checkMessage} from 'utility/ValidationMessage';
 
-const data = {
-  email: '',
-  password: '',
-};
 function LoginForm(props) {
-  const [formData, setFormData] = useState(data);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState({});
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
 
-  const handleChange = (name, value) => {
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    setErrorMessage(getErrorMessage(formData));
-  };
+  const [validUserMsg, setValidUserMsg] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
+    alert(JSON.stringify(data));
 
-    const errMessageObj = getErrorMessage(formData);
-    if (checkMessage(errMessageObj)) {
-      setErrorMessage(errMessageObj);
+    const response = await axios.post('/api/login', formData);
 
-      console.log(errMessageObj);
+    const {
+      data: {success, message},
+    } = response;
+
+    if (!success) {
+      setValidUserMsg(message);
     } else {
-      const response = await axios.post('/api/register', formData);
-      const {
-        data: {message},
-      } = response;
-
-      if (message === 'success') {
-        setSubmitSuccess(true);
-        setFormData(data);
-      }
+      setValidUserMsg('');
+      const {userdata} = response.data;
+      console.log(userdata);
     }
   };
 
-  const {email, password} = formData;
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className='row'>
+        {validUserMsg && (
+          <div className='col-sm-12'>
+            <div className='alert alert-danger' role='alert'>
+              {validUserMsg}
+            </div>
+          </div>
+        )}
         <div className='col-sm-12'>
           <Input
             iconname='envelope'
             label='Email'
-            placeholder='Enter Email...'
-            type='text'
             name='email'
-            handleChange={handleChange}
-            required={true}
-            errMessage={errorMessage.email}
-            propvalue={email}
+            type='text'
+            placeholder='Enter Email...'
+            register={register}
+            required
+            errors={errors}
           />
         </div>
 
@@ -64,13 +57,12 @@ function LoginForm(props) {
           <Input
             iconname='lock'
             label='Password'
-            placeholder='Enter Password...'
-            type='password'
             name='password'
-            handleChange={handleChange}
-            required={true}
-            errMessage={errorMessage.password}
-            propvalue={password}
+            type='password'
+            placeholder='Enter Password...'
+            register={register}
+            required
+            errors={errors}
           />
         </div>
 

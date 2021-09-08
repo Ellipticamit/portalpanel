@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import Input from 'components/Input'
-import TextArea from 'components/TextArea'
-import { getErrorMessage, checkMessage } from 'utility/ValidationMessage'
+import {useState, useEffect} from 'react';
+import axios from 'axios';
+import Input from 'components/Input';
+import TextArea from 'components/TextArea';
+import {getErrorMessage, checkMessage} from 'utility/ValidationMessage';
 
 const data = {
   first_name: '',
@@ -11,41 +11,41 @@ const data = {
   business_number: '',
   business_email: '',
   location: '',
-  message: ''
-}
+  message: '',
+};
 
-function ContactForm (props) {
-  const [formData, setFormData] = useState(data)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-  const [errorMessage, setErrorMessage] = useState({})
+function ContactForm(props) {
+  const [formData, setFormData] = useState(data);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({});
 
   const handleChange = (name, value) => {
     setFormData({
       ...formData,
-      [name]: value
-    })
-    setErrorMessage(getErrorMessage(formData))
-  }
+      [name]: value,
+    });
+    setErrorMessage(getErrorMessage(formData));
+  };
 
-  const handleSubmit = async e => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const errMessageObj = getErrorMessage(formData)
+    const errMessageObj = getErrorMessage(formData);
 
     if (checkMessage(errMessageObj)) {
-      setErrorMessage(errMessageObj)
+      setErrorMessage(errMessageObj);
     } else {
-      const response = await axios.post('/api/contact', formData)
+      const response = await axios.post('/api/contact', formData);
       const {
-        data: { message }
-      } = response
+        data: {message},
+      } = response;
 
       if (message === 'success') {
-        setSubmitSuccess(true)
-        setFormData(data)
+        setSubmitSuccess(true);
+        setFormData(data);
       }
     }
-  }
+  };
 
   const {
     first_name,
@@ -54,8 +54,8 @@ function ContactForm (props) {
     business_number,
     business_email,
     location,
-    message
-  } = formData
+    message,
+  } = formData;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -163,7 +163,7 @@ function ContactForm (props) {
         </div>
       )}
     </form>
-  )
+  );
 }
 
-export default ContactForm
+export default ContactForm;

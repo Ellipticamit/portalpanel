@@ -4,8 +4,8 @@ const userfield = {
   placeholder: 'Enter Full Name...',
   type: 'text',
   required: true,
-  name: 'name',
-};
+  name: 'name'
+}
 
 const emailField = {
   iconname: 'envelope',
@@ -13,8 +13,8 @@ const emailField = {
   placeholder: 'Enter Email...',
   type: 'email',
   required: true,
-  name: 'email',
-};
+  name: 'email'
+}
 
 const mobileField = {
   iconname: 'mobile',
@@ -22,37 +22,37 @@ const mobileField = {
   placeholder: 'Enter Mobile...',
   type: 'text',
   required: true,
-  name: 'mobile',
-};
+  name: 'mobile'
+}
 
 const passwordField = {
   iconname: 'lock',
   label: 'Password',
   placeholder: 'Enter Password...',
   type: 'password',
-  name: 'password',
-};
+  name: 'password'
+}
 
 const ExpertRegisterFields = [
   {
-    ...userfield,
+    ...userfield
   },
   {
-    ...emailField,
+    ...emailField
   },
   {
-    ...passwordField,
+    ...passwordField
   },
   {
-    ...mobileField,
+    ...mobileField
   },
   {
     iconname: 'graduation-cap',
     label: 'Year of Experience',
     placeholder: 'Enter Yoar of Experience...',
-    type: 'text',
+    type: 'number',
     name: 'experience',
-    required: true,
+    required: true
   },
   {
     iconname: 'trophy',
@@ -60,9 +60,9 @@ const ExpertRegisterFields = [
     placeholder: 'Enter Area of Expertise...',
     type: 'text',
     name: 'expertise',
-    required: true,
-  },
-];
+    required: true
+  }
+]
 
 const ExpertFormData = {
   name: '',
@@ -70,8 +70,8 @@ const ExpertFormData = {
   mobile: '',
   password: '',
   experience: '',
-  expertise: '',
-};
+  expertise: ''
+}
 
 const ClientFormData = {
   first_name: '',
@@ -80,50 +80,50 @@ const ClientFormData = {
   business_number: '',
   business_email: '',
   location: '',
-  message: '',
-};
+  message: ''
+}
 
 const ClientRegisterFields = [
   {
     ...userfield,
     label: 'First Name',
     name: 'first_name',
-    placeholder: 'Enter First Name...',
+    placeholder: 'Enter First Name...'
   },
   {
     ...userfield,
     label: 'Last Name',
     name: 'last_name',
-    placeholder: 'Enter Last Name...',
+    placeholder: 'Enter Last Name...'
   },
   {
     iconname: 'city',
     label: 'Company Name',
     type: 'text',
     name: 'company',
-    required: true,
+    required: true
   },
   {
     ...mobileField,
     label: 'Business Number',
-    placeholder: 'Enter Business Number...',
+    placeholder: 'Enter Business Number...'
   },
   {
     ...emailField,
     label: 'Business Email',
-    placeholder: 'Enter Business Email...',
+    placeholder: 'Enter Business Email...'
   },
   {
     iconname: 'map-marker',
     label: 'Location',
     type: 'text',
-    name: 'location',
-  },
-];
+    name: 'location'
+  }
+]
 
 export {
   ExpertRegisterFields,
   ExpertFormData,
   ClientRegisterFields,
-  ClientFormData,
-};
+  ClientFormData
+}

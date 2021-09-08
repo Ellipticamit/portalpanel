@@ -1,30 +1,35 @@
 const Message = {
-  email: 'Email Address is required',
-};
+  email: 'Email Address is required'
+}
 
-const getErrorMessage = (data) => {
-  let errMessage = {};
+const getErrorMessage = data => {
+  let errMessage = {}
   for (const [key, value] of Object.entries(data)) {
-    errMessage[key] = value === '' ? true : false;
+    errMessage[key] = value === '' ? true : false
   }
 
-  return errMessage;
-};
+  return errMessage
+}
 
-const checkMessage = (data) => {
+const checkMessage = data => {
   for (const [key, value] of Object.entries(data)) {
-    if (value) return true;
+    if (value) return true
   }
-  return false;
-};
+  return false
+}
 
-const isEmpty = (obj) => {
+const isEmpty = obj => {
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
-      return false;
+      return false
     }
   }
-  return true;
-};
+  return true
+}
 
-export {getErrorMessage, isEmpty, checkMessage};
+function validateEmail (email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(String(email).toLowerCase())
+}
+
+export { getErrorMessage, isEmpty, checkMessage, validateEmail }

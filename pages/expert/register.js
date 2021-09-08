@@ -1,15 +1,15 @@
-import React from 'react';
-import PageBanner from 'components/PageBanner';
-import RegisterForm from 'components/RegisterForm';
-import {ExpertFormData, ExpertRegisterFields} from 'utility/constant';
+import React from 'react'
+import PageBanner from 'components/PageBanner'
+import RegisterForm from 'components/RegisterForm'
+import { ExpertFormData, ExpertRegisterFields } from 'utility/constant'
 
-function ExpertRegister(props) {
+function ExpertRegister (props) {
   return (
     <section className='register'>
       <PageBanner
         img_name='bnr1.jpg'
-        heading='Page Heading'
-        sub_heading='Page SUb Heading'
+        heading='Register As Expert'
+        sub_heading=''
       />
       <div className='page__inner__content'>
         <div className='container'>
@@ -20,13 +20,16 @@ function ExpertRegister(props) {
               data-wow-delay='0.2s'
             >
               <div className='page__inner__content__top'>
+                {/*
                 <h6 className='sub_title bgl-primary m-b20 text-primary'>
                   Register as Expert
                 </h6>
+                */}
                 <h2 className='title'>
                   We Love To Help Great Companies To Enlarge Their Revenues.
                 </h2>
               </div>
+
               <div className='page__inner__content__form'>
                 <RegisterForm
                   data={ExpertFormData}
@@ -45,7 +48,7 @@ function ExpertRegister(props) {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default ExpertRegister;
+export default ExpertRegister

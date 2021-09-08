@@ -48,6 +48,13 @@ a {
   }
 }
 
+a.primary_link {
+  color: $primary;
+  &:hover {
+    color: $dark;
+  }
+}
+
 h1,
 h2,
 h3,

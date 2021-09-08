@@ -120,6 +120,11 @@ a {
   a:hover {
     text-decoration: none; }
 
+a.primary_link {
+  color: #896eff; }
+  a.primary_link:hover {
+    color: #262f5a; }
+
 h1,
 h2,
 h3,

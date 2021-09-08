@@ -1,19 +1,15 @@
+import React from 'react';
+
 function Input({
   label,
   iconname,
   name,
   type,
   placeholder = 'Enter...',
-  handleChange,
-  propvalue,
-  errMessage = false,
   required = false,
+  register,
+  errors,
 }) {
-  const onValueChange = (e) => {
-    const {name, value} = e.target;
-    handleChange(name, value);
-  };
-
   return (
     <div className='form__group'>
       <label htmlFor={label}>
@@ -25,18 +21,54 @@ function Input({
             <i className={`la la-${iconname}`}></i>
           </span>
         </div>
-        <input
-          className='form-control'
-          name={name}
-          id={label}
-          placeholder={placeholder}
-          type={type}
-          value={propvalue}
-          onChange={onValueChange}
-        />
+
+        {name === 'email' ? (
+          <input
+            className='form-control'
+            name={name}
+            id={label}
+            placeholder={placeholder}
+            type={type}
+            {...register(name, {
+              required: `${label} is required`,
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: 'Enter a valid e-mail address',
+              },
+            })}
+          />
+        ) : name === 'mobile' ? (
+          <input
+            className='form-control'
+            name={name}
+            id={label}
+            placeholder={placeholder}
+            type={type}
+            {...register(name, {
+              required: `${label} is required`,
+              pattern: {
+                value: /\d+/,
+                message: 'This input is number only.',
+              },
+              minLength: {
+                value: 10,
+                message: 'Enter valid mobile number (10 digit)',
+              },
+            })}
+          />
+        ) : (
+          <input
+            className='form-control'
+            name={name}
+            id={label}
+            placeholder={placeholder}
+            type={type}
+            {...register(name, {required: `${label} is required`})}
+          />
+        )}
       </div>
-      {errMessage && (
-        <div className='validation_msg'>This field is requried</div>
+      {errors[name] && (
+        <div className='validation_msg'>{errors[name].message}</div>
       )}
     </div>
   );

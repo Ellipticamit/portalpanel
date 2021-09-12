@@ -1,9 +1,11 @@
 import {useState} from 'react';
-import axios from 'axios';
+import {useRouter} from 'next/router';
 import {useForm} from 'react-hook-form';
 import Input from 'components/Input';
+import {userService} from 'services/user.services';
 
 function LoginForm(props) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -12,22 +14,18 @@ function LoginForm(props) {
 
   const [validUserMsg, setValidUserMsg] = useState('');
 
-  const onSubmit = async (data) => {
-    alert(JSON.stringify(data));
+  const onSubmit = async (formData) => {
+    // alert(JSON.stringify(formData));
+    setValidUserMsg(null);
+    const {email, password} = formData;
 
-    const response = await axios.post('/api/login', formData);
-
-    const {
-      data: {success, message},
-    } = response;
-
-    if (!success) {
-      setValidUserMsg(message);
-    } else {
-      setValidUserMsg('');
-      const {userdata} = response.data;
-      console.log(userdata);
-    }
+    userService
+      .login(email, password)
+      .then(() => {
+        const returnUrl = router.query.returnUrl || '/expert/dashboard';
+        router.push(returnUrl);
+      })
+      .catch((error) => setValidUserMsg(error));
   };
 
   return (

@@ -1,9 +1,23 @@
 import Link from 'next/link';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Image from 'next/image';
+
+import {userService} from 'services/user.services';
 
 function Header({homeheader}) {
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const subscription = userService.user.subscribe((x) => setUser(x));
+    return () => subscription.unsubscribe();
+  }, []);
+
+  function logout() {
+    console.log('logout');
+    userService.logout();
+  }
+
   return (
     <>
       <header className={`header__site header__transparent ${homeheader}`}>
@@ -29,28 +43,38 @@ function Header({homeheader}) {
                   <a href='/contact'>Contact Us</a>
                 </li>
               </ul>
-              <ul className='auth__menu'>
-                <li>
-                  <a href='/login'>
-                    <div className='btn btn__corner gradient btn__primary'>
-                      Login
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <div className='btn btn__corner gradient btn__primary'>
-                    Register
-                  </div>
-                  <ul className='sub-menu'>
-                    <li>
-                      <a href='/client/register'>As Client</a>
-                    </li>
-                    <li>
-                      <a href='/expert/register'>As Expert</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+              {user ? (
+                <ul className='auth__menu'>
+                  <li>
+                    Hi, Amit
+                    <ul className='sub-menu'>
+                      <li>
+                        <a href='/expert/dashboard'>Profile Details</a>
+                      </li>
+                      <li>
+                        <a onClick={logout}>Logout</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              ) : (
+                <ul className='auth__menu'>
+                  <li>
+                    <a href='/login'>
+                      <div className='btn btn__corner gradient btn__primary'>
+                        Login
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href='/expert/register'>
+                      <div className='btn btn__corner gradient btn__primary'>
+                        register
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              )}
             </div>
 
             <div

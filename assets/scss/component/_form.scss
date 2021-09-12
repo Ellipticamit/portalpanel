@@ -24,6 +24,25 @@
       margin-right: 10px;
     }
 
+    .country_codes {
+      position: absolute;
+      left: 55px;
+      z-index: 1000;
+      height: 95%;
+      top: 2px;
+      padding-left: 10px;
+      max-width: 70px;
+      border: 0px;
+    }
+
+    .mobile_number {
+      position: relative;
+      z-index: 10;
+      padding-left: 135px;
+      border: 0px;
+      outline: 0px;
+    }
+
     &-text {
       justify-content: center;
       padding: 0;
@@ -36,19 +55,23 @@
         font-size: 18px;
       }
     }
-
-    .form-control {
-      padding: 10px 20px 10px 65px;
-      box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1);
-      height: 45px;
-      border-radius: 1.5rem !important;
-      position: relative;
-      font-size: 15px;
-      transition: all 0.3s ease-in-out;
-      background: #fff;
-      border: 1px solid transparent;
-      font-weight: 400;
-      color: #888;
-    }
   }
+}
+
+.form-control {
+  padding: 10px 20px 10px 65px;
+  box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1);
+  height: 45px;
+  border-radius: 0.1rem !important;
+  position: relative;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+  background: #fff;
+  border: 1px solid transparent;
+  font-weight: 400;
+  color: #888;
+}
+
+.file__input {
+  padding: 10px;
 }

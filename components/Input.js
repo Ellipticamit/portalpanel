@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CountryCode from 'components/CountryCode';
+
 function Input({
   label,
   iconname,
@@ -38,6 +40,32 @@ function Input({
             })}
           />
         ) : name === 'mobile' ? (
+          <>
+            <CountryCode register={register} />
+            <input
+              className='form-control mobile_number'
+              name={name}
+              id={label}
+              placeholder={placeholder}
+              type={type}
+              {...register(name, {
+                required: `${label} is required`,
+                pattern: {
+                  value: /\d+/,
+                  message: 'This input is number only.',
+                },
+                minLength: {
+                  value: 10,
+                  message: 'Enter valid mobile number (10 digit)',
+                },
+                maxLength: {
+                  value: 10,
+                  message: 'Enter valid mobile number (10 digit)',
+                },
+              })}
+            />
+          </>
+        ) : required ? (
           <input
             className='form-control'
             name={name}
@@ -46,14 +74,6 @@ function Input({
             type={type}
             {...register(name, {
               required: `${label} is required`,
-              pattern: {
-                value: /\d+/,
-                message: 'This input is number only.',
-              },
-              minLength: {
-                value: 10,
-                message: 'Enter valid mobile number (10 digit)',
-              },
             })}
           />
         ) : (
@@ -63,7 +83,7 @@ function Input({
             id={label}
             placeholder={placeholder}
             type={type}
-            {...register(name, {required: `${label} is required`})}
+            {...register(name)}
           />
         )}
       </div>

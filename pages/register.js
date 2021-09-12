@@ -1,7 +1,17 @@
 import RegisterForm from 'elements/RegisterForm';
 import PageBanner from 'components/PageBanner';
 
+import StepProgressBar from 'react-step-progress';
+
 function register(props) {
+  const step1Content = <h1></h1>;
+  const step2Content = <h1></h1>;
+  const step3Content = <h1></h1>;
+
+  function step2Validator() {
+    return false;
+  }
+
   return (
     <section className='register'>
       <PageBanner
@@ -18,6 +28,32 @@ function register(props) {
               data-wow-duration='2s'
               data-wow-delay='0.2s'
             >
+              <StepProgressBar
+                startingStep={0}
+                steps={[
+                  {
+                    label: 'Briefing',
+                    name: 'Briefing',
+                    content: step1Content,
+                  },
+                  {
+                    label: 'Image-Acquisition',
+                    name: 'Image-Acquisition',
+                    content: step2Content,
+                  },
+                  {
+                    label: 'Image-processing',
+                    name: 'Image Processing',
+                    content: step3Content,
+                    validator: step2Validator,
+                  },
+                  {
+                    label: 'Finish',
+                    name: 'Finish',
+                    content: step3Content,
+                  },
+                ]}
+              />
               <div className='page__inner__content__top'>
                 <h6 className='sub_title bgl-primary m-b20 text-primary'>
                   Register

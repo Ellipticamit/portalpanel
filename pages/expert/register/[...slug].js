@@ -1,11 +1,18 @@
-import React from 'react'
-import PageBanner from 'components/PageBanner'
-import RegisterForm from 'components/RegisterForm'
-import { ExpertFormData, ExpertRegisterFields } from 'utility/constant'
+import {useRouter} from 'next/router';
+import PageBanner from 'components/PageBanner';
+import ProfileCompleteForm from 'elements/ProfileCompleteForm';
 
-function ExpertRegister (props) {
+function CompleteProfile(props) {
+  const router = useRouter();
+
+  let uid = '';
+
+  if (router.query && router.query.slug) {
+    uid = router.query.slug[0];
+  }
+
   return (
-    <section className='register'>
+    <section className='complete-profile'>
       <PageBanner
         img_name='bnr1.jpg'
         heading='Register As Expert'
@@ -20,21 +27,18 @@ function ExpertRegister (props) {
               data-wow-delay='0.2s'
             >
               <div className='page__inner__content__top'>
-                {/*
                 <h6 className='sub_title bgl-primary m-b20 text-primary'>
-                  Register as Expert
+                  Complete Profile Details
                 </h6>
-                */}
+                {/*
                 <h2 className='title'>
                   We Love To Help Great Companies To Enlarge Their Revenues.
                 </h2>
+                  */}
               </div>
 
               <div className='page__inner__content__form'>
-                <RegisterForm
-                  data={ExpertFormData}
-                  fields={ExpertRegisterFields}
-                />
+                <ProfileCompleteForm uid={uid} />
               </div>
             </div>
             {/*
@@ -48,7 +52,7 @@ function ExpertRegister (props) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default ExpertRegister
+export default CompleteProfile;

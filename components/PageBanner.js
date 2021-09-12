@@ -2,7 +2,7 @@ function PageBanner({img_name, heading, sub_heading}) {
   return (
     <div
       className='page__banner overlay_primary_dark'
-      style={{backgroundImage: `url(images/banner/${img_name})`}}
+      style={{backgroundImage: `url(/images/banner/${img_name})`}}
     >
       <div className='container'>
         <div className='page__banner__content'>

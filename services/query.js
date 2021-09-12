@@ -1,29 +1,29 @@
-import excuteQuery from './db'
+import excuteQuery from './db';
 
 const insertQuery = async (myquery, value) => {
   try {
     const result = await excuteQuery({
       query: `INSERT INTO ${myquery}`,
-      values: value
-    })
+      values: value,
+    });
 
-    return { data: 'success' }
+    return result;
   } catch (error) {
-    return { data: 'error' }
+    return error;
   }
-}
+};
 
 const getConditionQuery = async (table, myquery, value) => {
   try {
     const result = await excuteQuery({
       query: `SELECT * FROM ${table} WHERE ${myquery}`,
-      values: value
-    })
+      values: value,
+    });
 
-    return { data: result }
+    return {data: result};
   } catch (error) {
-    return { data: 'error' }
+    return {data: 'error'};
   }
-}
+};
 
-export { insertQuery, getConditionQuery }
+export {insertQuery, getConditionQuery};

@@ -31,8 +31,19 @@
   }
 }
 
+.p-10 {
+  padding: 10px !important;
+}
+
 .m-r10 {
   margin-right: 10px;
+}
+
+.m-b0 {
+  margin-bottom: 0px;
+}
+.m-b10 {
+  margin-bottom: 10px;
 }
 
 .m-b20 {
@@ -43,12 +54,16 @@
   margin-bottom: 30px;
 }
 
-.m-t30 {
-  margin-top: 30px;
+.m-t5 {
+  margin-top: 5px;
 }
 
 .m-t20 {
   margin-top: 20px;
+}
+
+.m-t30 {
+  margin-top: 30px;
 }
 
 .p-tb15 {

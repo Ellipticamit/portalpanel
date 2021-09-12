@@ -25,13 +25,19 @@
       background: $dark;
     }
   }
+
+  .auth__menu {
+    li {
+      color: $dark;
+    }
+  }
 }
 
 header {
   .main_bar {
     position: relative;
     width: 100%;
-    padding: 12px 0px;
+    padding: 20px 0px;
   }
 
   .is-fixed {
@@ -80,10 +86,11 @@ header {
 
     li {
       position: relative;
+      color: white;
       .sub-menu {
         background-color: #fff;
         display: block;
-        top: 60px;
+        top: 45px;
         left: 0;
         list-style: none;
         opacity: 1;

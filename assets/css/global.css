@@ -180,6 +180,22 @@ button:focus {
   .container {
     max-width: 97%; } }
 
+.css-yk16xz-control {
+  border: 0px !important;
+  box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1);
+  padding: 5px; }
+  .css-yk16xz-control:hover {
+    outline: none;
+    border: 0px; }
+
+.css-1pahdxg-control {
+  border: 0px !important;
+  box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1) !important;
+  padding: 5px; }
+
+.css-2613qy-menu {
+  border: 2px solid red !important; }
+
 .move_box {
   position: relative; }
   .move_box img {
@@ -227,8 +243,17 @@ button:focus {
   width: 100%;
   height: 100%; }
 
+.p-10 {
+  padding: 10px !important; }
+
 .m-r10 {
   margin-right: 10px; }
+
+.m-b0 {
+  margin-bottom: 0px; }
+
+.m-b10 {
+  margin-bottom: 10px; }
 
 .m-b20 {
   margin-bottom: 20px; }
@@ -236,11 +261,14 @@ button:focus {
 .m-b30 {
   margin-bottom: 30px; }
 
-.m-t30 {
-  margin-top: 30px; }
+.m-t5 {
+  margin-top: 5px; }
 
 .m-t20 {
   margin-top: 20px; }
+
+.m-t30 {
+  margin-top: 30px; }
 
 .p-tb15 {
   padding: 15px 0px; }
@@ -460,6 +488,21 @@ h5 {
       background-color: transparent;
       border-right: 1px solid #262f5a;
       margin-right: 10px; }
+    .form__group .input-group .country_codes {
+      position: absolute;
+      left: 55px;
+      z-index: 1000;
+      height: 95%;
+      top: 2px;
+      padding-left: 10px;
+      max-width: 70px;
+      border: 0px; }
+    .form__group .input-group .mobile_number {
+      position: relative;
+      z-index: 10;
+      padding-left: 135px;
+      border: 0px;
+      outline: 0px; }
     .form__group .input-group-text {
       justify-content: center;
       padding: 0;
@@ -470,18 +513,22 @@ h5 {
       .form__group .input-group-text i {
         color: #262f5a;
         font-size: 18px; }
-    .form__group .input-group .form-control {
-      padding: 10px 20px 10px 65px;
-      box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1);
-      height: 45px;
-      border-radius: 1.5rem !important;
-      position: relative;
-      font-size: 15px;
-      transition: all 0.3s ease-in-out;
-      background: #fff;
-      border: 1px solid transparent;
-      font-weight: 400;
-      color: #888; }
+
+.form-control {
+  padding: 10px 20px 10px 65px;
+  box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1);
+  height: 45px;
+  border-radius: 0.1rem !important;
+  position: relative;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+  background: #fff;
+  border: 1px solid transparent;
+  font-weight: 400;
+  color: #888; }
+
+.file__input {
+  padding: 10px; }
 
 .icon-box-wrapper {
   position: relative; }
@@ -808,6 +855,51 @@ h5 {
     display: flex;
     align-items: center; }
 
+.widget {
+  margin-bottom: 40px; }
+  .widget .widget-title {
+    color: #1f2471;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    font-size: 30px; }
+    .widget .widget-title:before {
+      content: '';
+      height: 100%;
+      width: 5px;
+      border-radius: 10px;
+      background-color: #896eff;
+      position: absolute;
+      left: 0;
+      top: 0; }
+
+.widget_archive ul li {
+  border-top: 1px solid #e1e1f0; }
+  .widget_archive ul li:last-child {
+    border-bottom: 1px solid #e1e1f0; }
+  .widget_archive ul li a {
+    display: flex;
+    padding: 8px 8px 8px 25px;
+    color: #1f2471;
+    transition: all 0.5s;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50px; }
+    .widget_archive ul li a span {
+      font-size: 15px;
+      background-color: rgba(137, 110, 255, 0.1);
+      color: #1f2471;
+      padding: 4px 15px;
+      border-radius: 20px;
+      transition: all 0.5s; }
+    .widget_archive ul li a:hover {
+      box-shadow: 0px 0 10px rgba(31, 66, 135, 0.2);
+      color: #896eff; }
+      .widget_archive ul li a:hover span {
+        background-image: var(--gradient);
+        background-size: 200%;
+        color: white; }
+
 .banner {
   background-image: url(/images/main-slider/slider1/pic2.png);
   background-position: 0 100%;
@@ -884,10 +976,14 @@ h5 {
 .header__transparent .is-fixed .ham__burger span {
   background: #262f5a; }
 
+.home__header .auth__menu li,
+.header__transparent .is-fixed .auth__menu li {
+  color: #262f5a; }
+
 header .main_bar {
   position: relative;
   width: 100%;
-  padding: 12px 0px; }
+  padding: 20px 0px; }
 
 header .is-fixed {
   background-color: white;
@@ -928,11 +1024,12 @@ header .auth__menu {
     margin-left: 10px;
     font-size: 14px; }
   header .auth__menu li {
-    position: relative; }
+    position: relative;
+    color: white; }
     header .auth__menu li .sub-menu {
       background-color: #fff;
       display: block;
-      top: 60px;
+      top: 45px;
       left: 0;
       list-style: none;
       opacity: 1;

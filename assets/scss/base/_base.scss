@@ -120,3 +120,24 @@ button:focus {
     max-width: 97%;
   }
 }
+
+.css-yk16xz-control {
+  border: 0px !important;
+  box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1);
+  padding: 5px;
+
+  &:hover {
+    outline: none;
+    border: 0px;
+  }
+}
+
+.css-1pahdxg-control {
+  border: 0px !important;
+  box-shadow: 0 0px 10px 4px rgba(31, 66, 135, 0.1) !important;
+  padding: 5px;
+}
+
+.css-2613qy-menu {
+  border: 2px solid red !important;
+}

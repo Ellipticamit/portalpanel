@@ -18,9 +18,6 @@ function Contact(props) {
               data-wow-delay='0.2s'
             >
               <div className='page__inner__content__top'>
-                <h6 className='sub_title bgl__primary m-b20 text_primary'>
-                  Contact US
-                </h6>
                 <h2 className='title'>Heading text related to contact</h2>
               </div>
               <div className='page__inner__content__form'>

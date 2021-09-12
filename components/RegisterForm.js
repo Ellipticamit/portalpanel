@@ -1,60 +1,59 @@
 import {useState} from 'react';
-import axios from 'axios';
 import {useForm} from 'react-hook-form';
-
+import {useRouter} from 'next/router';
 import Input from 'components/Input';
+import {userService} from 'services/user.services';
 
-function RegisterForm({fields = [], apiurl = ''}) {
+function RegisterForm({fields = [], formValidator}) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: {errors},
   } = useForm();
 
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [alreadyMessage, setAlreadyMessage] = useState(null);
+  const [errMsg, setErrMsg] = useState(null);
 
   const onSubmit = async (formData) => {
-    alert(JSON.stringify(data));
-    const response = await axios.post('/api/register', formData);
-    const {data} = response;
-    const {apiData, message} = data;
+    alert(JSON.stringify(formData));
+    setErrMsg(null);
+    userService
+      .register(formData)
+      .then((response) => {
+        const {data} = response;
+        const {userData, message} = data;
 
-    if (!apiData) {
-      console.log('errors', message);
-      setAlreadyMessage(message);
-    } else {
-      if (message === 'success') {
-        setSubmitSuccess(true);
-      }
-    }
+        if (message === 'success') {
+          const {id} = userData;
+
+          const returnUrl = `/expert/register/${id}/complete-profile`;
+          router.push(returnUrl);
+        }
+      })
+      .catch((error) => setErrMsg(error));
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='row'>
-        {alreadyMessage && (
+        {errMsg && (
           <div className='col-md-12'>
-            <div className='alert alert-warning' role='alert'>
-              {alreadyMessage} Try to
-              <a href='/' className='primary_link'>
-                {' '}
-                Login
-              </a>
+            <div className='alert alert-danger' role='alert'>
+              {errMsg}
             </div>
           </div>
         )}
 
         {fields.map((item, index) => {
           return (
-            <div className='col-md-6' key={item.label}>
+            <div className='col-md-4' key={item.label}>
               <Input
                 iconname={item.iconname}
                 label={item.label}
                 placeholder={item.placeholder}
                 type={item.type}
                 name={item.name}
-                required={true}
+                required={item.required}
                 register={register}
                 errors={errors}
               />

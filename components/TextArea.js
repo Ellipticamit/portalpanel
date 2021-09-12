@@ -3,28 +3,28 @@ function TextArea({
   iconname,
   name,
   placeholder = 'Enter...',
-  handleChange,
-  propvalue,
+  register,
+  showicon = true,
 }) {
-  const onValueChange = (e) => {
-    const {name, value} = e.target;
-    handleChange(name, value);
-  };
+  const paddingclass = showicon ? '' : 'p-10';
   return (
     <div className='form__group'>
       <label htmlFor={label}>{label}</label>
+
       <div className='input-group'>
-        <div className='input-group-prepend'>
-          <span className='input-group-text'>
-            <i className={`la la-${iconname}`}></i>
-          </span>
-        </div>
+        {showicon && (
+          <div className='input-group-prepend'>
+            <span className='input-group-text'>
+              <i className={`la la-${iconname}`}></i>
+            </span>
+          </div>
+        )}
         <textarea
+          className={`form-control ${paddingclass}`}
           name={name}
-          className='form-control'
+          id={label}
           placeholder={placeholder}
-          onChange={onValueChange}
-          value={propvalue}
+          {...register(name)}
         ></textarea>
       </div>
     </div>

@@ -14,7 +14,6 @@ function Header({homeheader}) {
   }, []);
 
   function logout() {
-    console.log('logout');
     userService.logout();
   }
 

@@ -6,7 +6,7 @@ export default apiHandler({
 
 async function contact(req, res) {
   // split out password from user details
-  console.log('body - ', req.body);
+
   await clientsDb.contact(req.body);
   return res.status(200).json({});
 }

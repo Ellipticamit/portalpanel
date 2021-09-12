@@ -7,7 +7,6 @@ const options = [
 ];
 
 function MultiSelect({label, ref, options, value, onChange, name, errors}) {
-  console.log(errors[name]);
   return (
     <div className='form__group'>
       <label>{label}</label>

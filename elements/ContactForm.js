@@ -23,7 +23,7 @@ function ContactForm(props) {
       .then(() => {
         setSubmitSuccess(true);
       })
-      .catch((error) => console.log('form error = ', error));
+      .catch((error) => console.log(error));
   };
 
   return (

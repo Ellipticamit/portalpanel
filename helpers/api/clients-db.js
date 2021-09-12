@@ -34,8 +34,6 @@ async function contact(data) {
     const response = await insertQuery(myquery, value);
     const rows = response && response.affectedRows;
 
-    console.log('res  contact = ', response);
-
     if (rows === 1) {
       return {
         message: 'success',

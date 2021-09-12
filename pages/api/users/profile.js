@@ -12,8 +12,6 @@ async function profile(req, res) {
 
   const user_exist = await usersDb.isUserExist(profile.uid);
 
-  console.log('user exist = ', user_exist);
-
   if (user_exist) {
     return res.status(200).json({});
   }

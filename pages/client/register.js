@@ -1,7 +1,5 @@
 import React from 'react';
 import PageBanner from 'components/PageBanner';
-import RegisterForm from 'components/RegisterForm';
-import {ClientFormData, ClientRegisterFields} from 'utility/constant';
 
 function ClientRegister(props) {
   return (
@@ -27,12 +25,7 @@ function ClientRegister(props) {
                   We Love To Help Great Companies To Enlarge Their Revenues.
                 </h2>
               </div>
-              <div className='page__inner__content__form'>
-                <RegisterForm
-                  data={ClientFormData}
-                  fields={ClientRegisterFields}
-                />
-              </div>
+              <div className='page__inner__content__form'></div>
             </div>
             {/*
                <div className='col-xl-6 col-lg-5 m-b30 wow fadeInRight'>

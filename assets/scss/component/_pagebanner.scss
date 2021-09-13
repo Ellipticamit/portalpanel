@@ -27,6 +27,7 @@
 .page__inner__content {
   background-image: url('/images/background/bg1.png');
   padding: 80px 0px 70px;
+  min-height: 30vh;
 
   &__top {
     margin-bottom: 40px;

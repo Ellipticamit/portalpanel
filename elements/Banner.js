@@ -60,7 +60,7 @@ function Banner(props) {
                   data-wow-delay='2s'
                   className='wow fadeInUp btn btn__primary'
                 >
-                  <Link href='/register'>
+                  <Link href='/expert/register'>
                     <a>
                       <div className='btn2 btn2-link d-inline-flex align-items-center'>
                         <i className='fa fa-angle-right m-r10'></i> BECOME AN

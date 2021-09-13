@@ -15,7 +15,6 @@ function RegisterForm({fields = [], formValidator}) {
   const [errMsg, setErrMsg] = useState(null);
 
   const onSubmit = async (formData) => {
-    alert(JSON.stringify(formData));
     setErrMsg(null);
     userService
       .register(formData)

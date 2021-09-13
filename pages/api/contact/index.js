@@ -1,33 +1,20 @@
+import {apiHandler, usersDb} from 'helpers/api';
+
 import Filter from 'bad-words';
+
 import {insertQuery} from 'services/query';
 
 const filter = new Filter();
 
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const {
-      first_name,
-      last_name,
-      company,
-      business_number,
-      business_email,
-      location,
-      message,
-    } = req.body;
-    const name = first_name + ' ' + last_name;
-    const myquery = `company (name, company, business_number, business_email, location, message)
-    VALUES (?, ?, ?, ?, ?, ?)`;
-    const value = [
-      filter.clean(name),
-      filter.clean(company),
-      filter.clean(business_number),
-      filter.clean(business_email),
-      filter.clean(location),
-      filter.clean(message),
-    ];
+export default apiHandler({
+  post: contact,
+});
 
-    const {data} = await insertQuery(myquery, value);
+async function contact(req, res) {
+  const contactData = req.body;
 
-    return res.status(200).json({message: data});
-  }
+  console.log('contact data as asdf = ', contactData);
+  const response = await clientDB.contact(contactData);
+  const {data} = response;
+  return res.status(200).json({message: 'success', respondeData: data});
 }

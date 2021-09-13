@@ -16,11 +16,9 @@ function ContactForm(props) {
   const [errorMessage, setErrorMessage] = useState({});
 
   const onSubmit = async (formData) => {
-    alert(JSON.stringify(formData));
-
     clientService
       .contact(formData)
-      .then(() => {
+      .then((response) => {
         setSubmitSuccess(true);
       })
       .catch((error) => console.log(error));
@@ -35,8 +33,30 @@ function ContactForm(props) {
         </div>
       ) : (
         <div className='row'>
+          <div className='col-md-12'>
+            <Input
+              iconname={'stream'}
+              label='Keywords related to ask'
+              type='text'
+              name='keywords'
+              required={false}
+              register={register}
+              errors={errors}
+              placeholder='(Type of work, Industry, Experience required etc.)'
+            />
+          </div>
+          <div className='col-md-12'>
+            <TextArea
+              iconname='sms'
+              label='Brief about project'
+              name='project_desc'
+              register={register}
+              placeholder='Enter breif about project...'
+            />
+          </div>
+
           {ClientRegisterFields.map((item) => (
-            <div className='col-md-6'>
+            <div className='col-md-12' key={item.label}>
               <Input
                 iconname={item.iconname}
                 label={item.label}
@@ -49,15 +69,6 @@ function ContactForm(props) {
               />
             </div>
           ))}
-
-          <div className='col-md-12'>
-            <TextArea
-              iconname='sms'
-              label='Message'
-              name='message'
-              register={register}
-            />
-          </div>
 
           <div className='col-sm-12 mt-2'>
             <button

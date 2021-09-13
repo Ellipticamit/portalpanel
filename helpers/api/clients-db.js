@@ -8,32 +8,18 @@ export const clientsDb = {
 };
 
 async function contact(data) {
-  const {
-    first_name,
-    last_name,
-    company,
-    business_number,
-    business_email,
-    location,
-    message,
-  } = data;
+  const {name, company_name, contact_email, project_desc, keywords} = data;
 
-  const name = first_name + ' ' + last_name;
-  const myquery = `company (name, company, business_number, business_email, location, message)
-  VALUES (?, ?, ?, ?, ?, ?)`;
-  const value = [
-    name,
-    company,
-    business_number,
-    business_email,
-    location,
-    message,
-  ];
+  console.log('key - ', data);
+
+  const myquery = `company (name, company_name, contact_email, project_desc, keywords) VALUES (?, ?, ?, ?, ?)`;
+  const value = [name, company_name, contact_email, project_desc, keywords];
 
   try {
     const response = await insertQuery(myquery, value);
     const rows = response && response.affectedRows;
 
+    console.log('db - res = ', response);
     if (rows === 1) {
       return {
         message: 'success',

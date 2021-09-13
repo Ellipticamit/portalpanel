@@ -147,39 +147,23 @@ const UserMultiSelectFields = [
 
 const ClientRegisterFields = [
   {
-    ...userfield,
-    label: 'First Name',
-    name: 'first_name',
-    placeholder: 'Enter First Name...',
+    ...emailField,
+    label: 'Contact Email',
+    placeholder: 'Enter Contact Email...',
+    name: 'contact_email',
   },
   {
     ...userfield,
-    label: 'Last Name',
-    name: 'last_name',
-    placeholder: 'Enter Last Name...',
+    label: 'Name',
+    name: 'name',
+    placeholder: 'Enter Name...',
   },
   {
     iconname: 'city',
     label: 'Company Name',
     type: 'text',
-    name: 'company',
+    name: 'company_name',
     required: true,
-  },
-  {
-    ...mobileField,
-    label: 'Business Number',
-    placeholder: 'Enter Business Number...',
-  },
-  {
-    ...emailField,
-    label: 'Business Email',
-    placeholder: 'Enter Business Email...',
-  },
-  {
-    iconname: 'map-marker',
-    label: 'Location',
-    type: 'text',
-    name: 'location',
   },
 ];
 

@@ -15,7 +15,6 @@ function LoginForm(props) {
   const [validUserMsg, setValidUserMsg] = useState('');
 
   const onSubmit = async (formData) => {
-    // alert(JSON.stringify(formData));
     setValidUserMsg(null);
     const {email, password} = formData;
 

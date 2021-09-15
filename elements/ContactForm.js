@@ -1,9 +1,8 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import Input from 'components/Input';
 import TextArea from 'components/TextArea';
-
-import {clientService} from 'services/client-services';
+import {clientService} from 'services/client.services';
 import {ClientRegisterFields} from 'utility/constant';
 
 function ContactForm(props) {
@@ -12,6 +11,7 @@ function ContactForm(props) {
     handleSubmit,
     formState: {errors},
   } = useForm();
+
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState({});
 
@@ -19,7 +19,8 @@ function ContactForm(props) {
     clientService
       .contact(formData)
       .then((response) => {
-        setSubmitSuccess(true);
+        console.log('contact response = ', response);
+        // setSubmitSuccess(true);
       })
       .catch((error) => console.log(error));
   };
@@ -51,7 +52,7 @@ function ContactForm(props) {
               label='Brief about project'
               name='project_desc'
               register={register}
-              placeholder='Enter breif about project...'
+              placeholder='Enter brief about project...'
             />
           </div>
 

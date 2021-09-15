@@ -49,7 +49,7 @@ const passwordField = {
 };
 const firstName = nameField('First Name', 'first_name', true);
 const middleName = nameField('Middle Name', 'middle_name', false);
-const surName = nameField('Surnane Name', 'surname', false);
+const surName = nameField('Surname Name', 'surname', false);
 const ExpertRegisterFields = [
   {
     ...firstName,
@@ -109,7 +109,7 @@ const workOptions = [
 
 const UserMultiSelectFields = [
   {
-    label: 'No. of Years of Experience',
+    label: 'Years of Experience',
     name: 'experience',
     ismulti: false,
     required: 'Years of Experience is required',

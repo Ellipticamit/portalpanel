@@ -3,6 +3,7 @@ import {useRouter} from 'next/router';
 import {useForm} from 'react-hook-form';
 import Input from 'components/Input';
 import {userService} from 'services/user.services';
+import MobileLogin from 'elements/MobileLogin';
 
 function LoginForm(props) {
   const router = useRouter();
@@ -28,56 +29,62 @@ function LoginForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='row'>
-        {validUserMsg && (
-          <div className='col-sm-12'>
-            <div className='alert alert-danger' role='alert'>
-              {validUserMsg}
-            </div>
+    <div className='login-page'>
+      {validUserMsg && (
+        <div className='col-sm-12'>
+          <div className='alert alert-danger' role='alert'>
+            {validUserMsg}
           </div>
-        )}
-        <div className='col-sm-12'>
-          <Input
-            iconname='envelope'
-            label='Email'
-            name='email'
-            type='text'
-            placeholder='Enter Email...'
-            register={register}
-            required
-            errors={errors}
-          />
         </div>
+      )}
 
-        <div className='col-sm-12'>
-          <Input
-            iconname='lock'
-            label='Password'
-            name='password'
-            type='password'
-            placeholder='Enter Password...'
-            register={register}
-            required
-            errors={errors}
-          />
-        </div>
+      <MobileLogin />
+      <hr className='hr-text' data-content='OR' />
 
-        <div className='col-sm-12 mt-2'>
-          <button
-            name='submit'
-            type='submit'
-            propvalue='Submit'
-            className='btn2 btn2-link d-inline-flex align-items-center'
-          >
-            <i className='fa fa-angle-right m-r10'></i>Login
-          </button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='row'>
+          <div className='col-sm-12'>
+            <Input
+              iconname='envelope'
+              label='Email'
+              name='email'
+              type='text'
+              placeholder='Enter Email...'
+              register={register}
+              required
+              errors={errors}
+            />
+          </div>
+          <div className='col-sm-12'>
+            <Input
+              iconname='lock'
+              label='Password'
+              name='password'
+              type='password'
+              placeholder='Enter Password...'
+              register={register}
+              required
+              errors={errors}
+            />
+          </div>
+
+          <div className='col-sm-12 mt-2'>
+            <button
+              name='submit'
+              type='submit'
+              propvalue='Submit'
+              className='btn2 btn2-link d-inline-flex align-items-center'
+            >
+              <i className='fa fa-angle-right m-r10'></i>Login
+            </button>
+          </div>
         </div>
-      </div>
+      </form>
+
       <div className='m-t20 danger__text'>
         <span className='required'>*</span> Fields are mandatory.
       </div>
-    </form>
+    </div>
   );
 }
 

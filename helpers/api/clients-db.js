@@ -1,7 +1,4 @@
-import Filter from 'bad-words';
 import {insertQuery} from 'services/query';
-
-const filter = new Filter();
 
 export const clientsDb = {
   contact,

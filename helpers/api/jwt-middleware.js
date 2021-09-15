@@ -16,7 +16,7 @@ function jwtMiddleware(req, res) {
       '/api/users/register',
       '/api/users/login',
       '/api/users/profile',
-      '/api/clients/contact',
+      '/api/contact',
     ],
   });
 

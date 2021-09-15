@@ -14,7 +14,7 @@ module.exports = {
     apiUrl:
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:3001/api' // development api
-        : 'http://localhost:3001/api', // production api
+        : 'https://portalpanel.vercel.app/api', // production api
   },
   async headers() {
     return [

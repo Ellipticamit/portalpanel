@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {useRouter} from 'next/router';
+import Spinner from 'react-bootstrap/Spinner';
 import Input from 'components/Input';
 import {userService} from 'services/user.services';
 
@@ -13,15 +14,18 @@ function RegisterForm({fields = [], formValidator}) {
   } = useForm();
 
   const [errMsg, setErrMsg] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (formData) => {
     setErrMsg(null);
+    setLoading(true);
+
     userService
       .register(formData)
       .then((response) => {
         const {data} = response;
         const {userData, message} = data;
-
+        setLoading(false);
         if (message === 'success') {
           const {id} = userData;
 
@@ -29,7 +33,10 @@ function RegisterForm({fields = [], formValidator}) {
           router.push(returnUrl);
         }
       })
-      .catch((error) => setErrMsg(error));
+      .catch((error) => {
+        setLoading(false);
+        setErrMsg(error);
+      });
   };
 
   return (
@@ -61,14 +68,22 @@ function RegisterForm({fields = [], formValidator}) {
         })}
 
         <div className='col-sm-12 mt-2'>
-          <button
-            name='submit'
-            type='submit'
-            propvalue='Submit'
-            className='btn2 btn2-link d-inline-flex align-items-center'
-          >
-            <i className='fa fa-angle-right m-r10'></i>Register
-          </button>
+          {loading ? (
+            <Spinner
+              animation='border'
+              variant='primary'
+              role='status'
+            ></Spinner>
+          ) : (
+            <button
+              name='submit'
+              type='submit'
+              propvalue='Submit'
+              className='btn2 btn2-link d-inline-flex align-items-center'
+            >
+              <i className='fa fa-angle-right m-r10'></i>Register
+            </button>
+          )}
         </div>
       </div>
 

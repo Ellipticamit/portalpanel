@@ -28,9 +28,9 @@ async function contact(req, res) {
     from: 'amtroadies@gmail.com',
     to: contact_email,
     subject: `Message From Senior Portal`,
-    text: ' Senior Portal. | Sent from: ' + contact_email,
+    text: ' Senior Portal. | Sent from: Seniorportalmail@gmail.com',
     html: `<div>Message goes here. </div><p>Sent from:
-    ${contact_email}</p>`,
+    Seniorportalmail@gmail.com</p>`,
   };
 
   transporter.sendMail(mailData, function (err, info) {

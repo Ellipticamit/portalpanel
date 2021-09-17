@@ -24,7 +24,7 @@ function Input({
           </span>
         </div>
 
-        {name === 'email' ? (
+        {name === 'email' || name === 'contact_email' ? (
           <input
             className='form-control'
             name={name}

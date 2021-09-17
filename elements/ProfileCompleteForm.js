@@ -2,6 +2,7 @@ import {useState} from 'react';
 import axios from 'axios';
 import {useForm, Controller} from 'react-hook-form';
 import {useRouter} from 'next/router';
+import Spinner from 'react-bootstrap/Spinner';
 import {UserMultiSelectFields} from 'utility/constant';
 import TextArea from 'components/TextArea';
 import Select from 'react-select';
@@ -19,6 +20,7 @@ function ProfileCompleteForm({uid}) {
 
   const [fileName, setFileName] = useState(null);
   const [fileExtError, setFileExtError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const uploadToClient = async (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -56,6 +58,7 @@ function ProfileCompleteForm({uid}) {
   const [errMsg, setErrMsg] = useState(null);
 
   const onSubmit = async (formData) => {
+    setLoading(true);
     setErrMsg('');
     formData['uid'] = uid;
     formData['resume'] = fileName;
@@ -65,13 +68,16 @@ function ProfileCompleteForm({uid}) {
       .then((response) => {
         const {data} = response;
         const {message} = data;
-
+        setLoading(false);
         if (message === 'success') {
           const returnUrl = `/login`;
           router.push(returnUrl);
         }
       })
-      .catch((error) => setErrMsg(error));
+      .catch((error) => {
+        setErrMsg('Error Occurs. Try againg');
+        setLoading(false);
+      });
   };
 
   return (
@@ -164,15 +170,23 @@ function ProfileCompleteForm({uid}) {
           />
         </div>
 
-        <div className='col-sm-12 mt-4'>
-          <button
-            name='submit'
-            type='submit'
-            propvalue='Submit'
-            className='btn2 btn2-link d-inline-flex align-items-center'
-          >
-            <i className='fa fa-angle-right m-r10'></i>Submit
-          </button>
+        <div className='col-sm-12 mt-2'>
+          {loading ? (
+            <Spinner
+              animation='border'
+              variant='primary'
+              role='status'
+            ></Spinner>
+          ) : (
+            <button
+              name='submit'
+              type='submit'
+              propvalue='Submit'
+              className='btn2 btn2-link d-inline-flex align-items-center'
+            >
+              <i className='fa fa-angle-right m-r10'></i>Submit
+            </button>
+          )}
         </div>
       </div>
 

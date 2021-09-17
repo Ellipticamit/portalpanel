@@ -13,7 +13,7 @@ async function profile(req, res) {
   const user_exist = await usersDb.isUserExist(profile.uid);
 
   if (user_exist) {
-    return res.status(200).json({});
+    return res.status(200).json({data: ''});
   }
 
   const response = await usersDb.completeprofile(profile);

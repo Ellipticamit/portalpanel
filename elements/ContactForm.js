@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {useForm} from 'react-hook-form';
+import Spinner from 'react-bootstrap/Spinner';
 import Input from 'components/Input';
 import TextArea from 'components/TextArea';
 import {clientService} from 'services/client.services';
@@ -13,16 +14,22 @@ function ContactForm(props) {
   } = useForm();
 
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState({});
 
   const onSubmit = async (formData) => {
+    setLoading(true);
+
     clientService
       .contact(formData)
       .then((response) => {
-        console.log('contact response = ', response);
-        // setSubmitSuccess(true);
+        setSubmitSuccess(true);
+        setLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
   };
 
   return (
@@ -72,14 +79,22 @@ function ContactForm(props) {
           ))}
 
           <div className='col-sm-12 mt-2'>
-            <button
-              name='submit'
-              type='submit'
-              propvalue='Submit'
-              className='btn2 btn2-link d-inline-flex align-items-center'
-            >
-              <i className='fa fa-angle-right m-r10'></i>Contact Us
-            </button>
+            {loading ? (
+              <Spinner
+                animation='border'
+                variant='primary'
+                role='status'
+              ></Spinner>
+            ) : (
+              <button
+                name='submit'
+                type='submit'
+                propvalue='Submit'
+                className='btn2 btn2-link d-inline-flex align-items-center'
+              >
+                <i className='fa fa-angle-right m-r10'></i>Contact Us
+              </button>
+            )}
           </div>
           <div className='m-t20 danger__text'>
             <span className='required'>*</span> Fields are mandatory.

@@ -6,9 +6,11 @@ const filter = new Filter();
 
 export const usersDb = {
   login,
+  mobilelogin,
   register,
   isEmailExist,
   isUserExist,
+  isMobileExist,
   completeprofile,
 };
 
@@ -16,7 +18,17 @@ async function login(email) {
   const myquery = `email = ? `;
   const value = [filter.clean(email)];
 
-  const response = await getConditionQuery('user', myquery, value);
+  const response = await getConditionQuery('register', myquery, value);
+
+  const {data} = response;
+  return data[0];
+}
+
+async function mobilelogin(mobile) {
+  const myquery = `mobile = ? `;
+  const value = [filter.clean(mobile)];
+
+  const response = await getConditionQuery('register', myquery, value);
   const {data} = response;
   return data[0];
 }
@@ -125,6 +137,16 @@ async function getUserDetails(email) {
 async function isEmailExist(email) {
   const myquery = `email = ? `;
   const value = [filter.clean(email)];
+
+  const response = await getConditionQuery('register', myquery, value);
+  const {data} = response;
+  if (data.length === 0) return false;
+  return true;
+}
+
+async function isMobileExist(mobile) {
+  const myquery = `mobile = ? `;
+  const value = [filter.clean(mobile)];
 
   const response = await getConditionQuery('register', myquery, value);
   const {data} = response;

@@ -16,6 +16,7 @@ export const userService = {
     return userSubject.value;
   },
   login,
+  mobilelogin,
   logout,
   register,
   completeProfile,
@@ -31,6 +32,16 @@ function login(email, password) {
 
       return user;
     });
+}
+
+function mobilelogin(mobile) {
+  return fetchWrapper.post(`${baseUrl}/mobilelogin`, {mobile}).then((user) => {
+    // publish user to subscribers and store in local storage to stay logged in between page refreshes
+    // userSubject.next(user);
+    // localStorage.setItem('user', JSON.stringify(user));
+
+    return '';
+  });
 }
 
 function logout() {

@@ -25,9 +25,11 @@ function ContactForm(props) {
       .then((response) => {
         setSubmitSuccess(true);
         setLoading(false);
+        window.scrollTo(0, 0);
       })
       .catch((error) => {
         setLoading(false);
+        window.scrollTo(0, 0);
         console.log(error);
       });
   };

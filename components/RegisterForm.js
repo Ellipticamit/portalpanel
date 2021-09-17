@@ -28,7 +28,6 @@ function RegisterForm({fields = [], formValidator}) {
         setLoading(false);
         if (message === 'success') {
           const {id} = userData;
-
           const returnUrl = `/expert/register/${id}/complete-profile`;
           router.push(returnUrl);
         }

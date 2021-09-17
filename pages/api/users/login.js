@@ -26,8 +26,10 @@ async function login(req, res) {
   });
 
   return res.status(200).json({
-    id: user.uid,
-    name: user.name,
+    id: user.id,
+    first_name: user.first_name,
+    middle_name: user.middle_name,
+    surname: user.surname,
     email: user.email,
     token,
   });

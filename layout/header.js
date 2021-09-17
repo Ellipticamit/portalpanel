@@ -45,7 +45,7 @@ function Header({homeheader}) {
               {user ? (
                 <ul className='auth__menu'>
                   <li>
-                    Hi, Amit
+                    Hi, {user.first_name}
                     <ul className='sub-menu'>
                       <li>
                         <a href='/expert/dashboard'>Profile Details</a>

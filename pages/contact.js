@@ -41,7 +41,7 @@ function Contact(props) {
               </div>
 
               <div className=''>
-                <img src='images/about/img2.png' className='move_1' alt='' />
+                <img src='/images/about/img2.png' className='move_1' alt='' />
               </div>
             </div>
           </div>

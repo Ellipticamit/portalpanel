@@ -1,5 +1,3 @@
-const bcrypt = require('bcryptjs');
-
 import {apiHandler, usersDb} from 'helpers/api';
 
 export default apiHandler({

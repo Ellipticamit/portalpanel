@@ -16,6 +16,11 @@ async function register(req, res) {
     throw `User with the email "${user.email}" already exists.`;
   }
 
+  const mobile_exist = await usersDb.isMobileExist(user.mobile);
+  if (mobile_exist) {
+    throw `User with the mobile no  "${user.mobile}" already exists.`;
+  }
+
   user.password = bcrypt.hashSync(password, 10);
 
   const response = await usersDb.register(user);

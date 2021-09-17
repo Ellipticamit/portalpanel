@@ -6,6 +6,13 @@ import Input from 'components/Input';
 import {userService} from 'services/user.services';
 import MobileLogin from 'elements/MobileLogin';
 
+const filterErrorMsg = (msg) => {
+  if (msg === 'Email is incorrect.' || msg === 'Password is incorrect.') {
+    return msg;
+  }
+  return 'Error Occurs. Try Again';
+};
+
 function LoginForm(props) {
   const router = useRouter();
   const {
@@ -30,7 +37,7 @@ function LoginForm(props) {
       })
       .catch((error) => {
         setLoading(false);
-        setValidUserMsg('Errot Occurs. Try Again');
+        setValidUserMsg(filterErrorMsg(error));
       });
   };
 
@@ -39,16 +46,15 @@ function LoginForm(props) {
       <MobileLogin />
       <hr className='hr-text' data-content='OR' />
 
-      {validUserMsg && (
-        <div className='col-sm-12 mt-3'>
-          <div className='alert alert-danger' role='alert'>
-            {validUserMsg}
-          </div>
-        </div>
-      )}
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='row'>
+          {validUserMsg && (
+            <div className='col-sm-12 mt-3'>
+              <div className='alert alert-danger' role='alert'>
+                {validUserMsg}
+              </div>
+            </div>
+          )}
           <div className='col-sm-12'>
             <Input
               iconname='envelope'

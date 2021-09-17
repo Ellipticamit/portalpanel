@@ -1,5 +1,4 @@
 import {apiHandler, usersDb} from 'helpers/api';
-import dashboard from 'pages/expert/dashboard';
 
 export default apiHandler({
   post: dashboard,

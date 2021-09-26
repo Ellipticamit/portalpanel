@@ -1,9 +1,18 @@
 import React from 'react';
+import {useRouter} from 'next/router';
 import PageBanner from 'components/PageBanner';
 import RegisterForm from 'components/RegisterForm';
 import {ExpertRegisterFields} from 'utility/constant';
+import {userService} from 'services/user.services';
 
 function Register(props) {
+  const router = useRouter();
+  const id = userService.userValue && userService.userValue.id;
+
+  if (id) {
+    const returnUrl = router.query.returnUrl || '/expert/dashboard';
+    router.push(returnUrl);
+  }
   return (
     <section className='register'>
       <PageBanner

@@ -26,4 +26,17 @@ const getConditionQuery = async (table, myquery, value) => {
   }
 };
 
-export {insertQuery, getConditionQuery};
+const updateQuery = async (tablename, query, value) => {
+  try {
+    const result = await excuteQuery({
+      query: `Update ${tablename} SET ${query}`,
+      values: value,
+    });
+
+    return {data: '', message: 'success'};
+  } catch (error) {
+    return {data: 'error', message: 'error'};
+  }
+};
+
+export {insertQuery, getConditionQuery, updateQuery};

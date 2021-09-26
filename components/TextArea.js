@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 function TextArea({
   label,
   iconname,
@@ -5,7 +7,9 @@ function TextArea({
   placeholder = 'Enter...',
   register,
   showicon = true,
+  propvalue = '',
 }) {
+  const [value, setValue] = useState(propvalue);
   const paddingclass = showicon ? '' : 'p-10';
   return (
     <div className='form__group'>
@@ -25,6 +29,8 @@ function TextArea({
           id={label}
           placeholder={placeholder}
           {...register(name)}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
         ></textarea>
       </div>
     </div>

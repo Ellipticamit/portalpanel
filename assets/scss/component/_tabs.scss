@@ -1,0 +1,19 @@
+.react-tabs {
+  &__tab {
+    padding: 15px 25px;
+    bottom: 0px;
+    &-list {
+      border-bottom: 1px solid $grey;
+    }
+
+    &--selected {
+      border: 0px;
+      background: $primary-light;
+      border-radius: 0px;
+    }
+
+    &-panel {
+      padding: 10px 20px;
+    }
+  }
+}

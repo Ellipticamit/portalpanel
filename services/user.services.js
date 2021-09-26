@@ -20,6 +20,9 @@ export const userService = {
   logout,
   register,
   completeProfile,
+  getUserProfile,
+  updateProfile,
+  updateUser,
 };
 
 function login(email, password) {
@@ -29,7 +32,6 @@ function login(email, password) {
       // publish user to subscribers and store in local storage to stay logged in between page refreshes
       userSubject.next(user);
       localStorage.setItem('user', JSON.stringify(user));
-
       return user;
     });
 }
@@ -55,6 +57,25 @@ function register(user) {
   return fetchWrapper.post(`${baseUrl}/register`, user);
 }
 
+function updateUser(user) {
+  return fetchWrapper.put(`${baseUrl}/register`, user).then((response) => {
+    console.log('update user sadfasdfadsfa = ', response);
+    const {data} = response;
+    userSubject.next(data);
+    localStorage.setItem('user', JSON.stringify(data));
+
+    return data;
+  });
+}
+
 function completeProfile(profileData) {
   return fetchWrapper.post(`${baseUrl}/profile`, profileData);
+}
+
+function updateProfile(profileData) {
+  return fetchWrapper.put(`${baseUrl}/profile`, profileData);
+}
+
+function getUserProfile(uid) {
+  return fetchWrapper.get(`${baseUrl}/profile/?uid=${uid}`);
 }

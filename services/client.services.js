@@ -9,6 +9,5 @@ export const clientService = {
 };
 
 function contact(data) {
-  console.log('contact called = url = ', `${baseUrl}/contact`);
   return fetchWrapper.post(`${baseUrl}/contact`, data);
 }

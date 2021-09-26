@@ -5,7 +5,14 @@ import Spinner from 'react-bootstrap/Spinner';
 import Input from 'components/Input';
 import {userService} from 'services/user.services';
 
-function RegisterForm({fields = [], formValidator}) {
+function RegisterForm({
+  fields = [],
+  colstyle = 'col-md-4',
+  values = {},
+  registerbutton = 'Register',
+  submit_type = 'register',
+  uid = '',
+}) {
   const router = useRouter();
   const {
     register,
@@ -14,14 +21,20 @@ function RegisterForm({fields = [], formValidator}) {
   } = useForm();
 
   const [errMsg, setErrMsg] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (formData) => {
+  const onSubmit = (formData) => {
     setErrMsg(null);
     setLoading(true);
 
+    if (submit_type === 'register') registerSubmit(formData);
+    else updateSubmit(formData);
+  };
+
+  const registerSubmit = async (data) => {
     userService
-      .register(formData)
+      .register(data)
       .then((response) => {
         const {data} = response;
         const {userData, message} = data;
@@ -38,6 +51,23 @@ function RegisterForm({fields = [], formValidator}) {
       });
   };
 
+  const updateSubmit = async (data) => {
+    data['uid'] = uid;
+    userService
+      .updateUser(data)
+      .then((response) => {
+        setSuccessMsg('Account Details Successfully Updated.');
+
+        setTimeout(() => {
+          router.reload(window.location.pathname);
+        }, 1000);
+      })
+      .catch((error) => {});
+    setLoading(false);
+  };
+
+  console.log('values = ', values);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='row'>
@@ -49,9 +79,17 @@ function RegisterForm({fields = [], formValidator}) {
           </div>
         )}
 
+        {successMsg && (
+          <div className='col-md-12'>
+            <div className='alert alert-success' role='alert'>
+              {successMsg}
+            </div>
+          </div>
+        )}
+
         {fields.map((item, index) => {
           return (
-            <div className='col-md-4' key={item.label}>
+            <div className={colstyle} key={item.label}>
               <Input
                 iconname={item.iconname}
                 label={item.label}
@@ -61,6 +99,7 @@ function RegisterForm({fields = [], formValidator}) {
                 required={item.required}
                 register={register}
                 errors={errors}
+                propvalue={values[item.name]}
               />
             </div>
           );
@@ -80,7 +119,8 @@ function RegisterForm({fields = [], formValidator}) {
               propvalue='Submit'
               className='btn2 btn2-link d-inline-flex align-items-center'
             >
-              <i className='fa fa-angle-right m-r10'></i>Register
+              <i className='fa fa-angle-right m-r10'></i>
+              {registerbutton}
             </button>
           )}
         </div>

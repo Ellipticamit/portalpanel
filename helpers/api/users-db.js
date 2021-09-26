@@ -1,5 +1,5 @@
 import Filter from 'bad-words';
-import {getConditionQuery, insertQuery} from 'services/query';
+import {getConditionQuery, insertQuery, updateQuery} from 'services/query';
 import {arrayToString} from 'utility/helper';
 
 const filter = new Filter();
@@ -12,6 +12,9 @@ export const usersDb = {
   isUserExist,
   isMobileExist,
   completeprofile,
+  getprofile,
+  updateProfile,
+  updateUser,
 };
 
 async function login(email) {
@@ -62,19 +65,48 @@ async function register(user) {
 
     if (rows === 1) {
       const user = await getUserDetails(email);
-
       return {
         message: 'success',
         userData: user,
       };
     }
   } catch (error) {
-    // console.log('db error = ', error);
     return {
       message: 'error',
       userData: null,
     };
   }
+}
+
+async function updateUser(user) {
+  const {
+    first_name,
+    middle_name,
+    surname,
+    country_code,
+    mobile,
+    email,
+    uid,
+  } = user;
+
+  const myquery =
+    'first_name = ?, middle_name = ?, surname = ?, country_code = ?, mobile = ? , email = ? WHERE id = ? ';
+  const value = [
+    filter.clean(first_name),
+    middle_name ? filter.clean(middle_name) : middle_name,
+    surname ? filter.clean(surname) : surname,
+    filter.clean(country_code),
+    filter.clean(mobile),
+    filter.clean(email),
+    uid,
+  ];
+
+  const response = await updateQuery('register', myquery, value);
+
+  if (response.message === 'success')
+    response.data = await getUserDetails(email);
+
+  return response;
 }
 
 async function completeprofile(profile) {
@@ -120,6 +152,58 @@ async function completeprofile(profile) {
       message: 'error',
     };
   }
+}
+
+async function getprofile(uid) {
+  const myquery = `uid = ? `;
+  const value = [filter.clean(uid)];
+
+  const response = await getConditionQuery('userprofile', myquery, value);
+  const {data} = response;
+
+  if (data.length === 0) {
+    return {
+      data: [],
+      message: 'not found',
+    };
+  }
+
+  return {
+    data: data[0],
+    message: 'found',
+  };
+}
+
+async function updateProfile(data) {
+  const {
+    uid,
+    experience,
+    industries,
+    position,
+    assignment,
+    work,
+    professionalprofile,
+  } = data;
+  console.log('user db  = ', data);
+
+  const industries_str = arrayToString(industries);
+  const assignment_str = arrayToString(assignment);
+  const work_str = arrayToString(work);
+
+  const myquery =
+    'experience = ?, industries = ?, position = ?, assignment = ?, work = ? , professionalprofile = ? WHERE uid = ?';
+  const value = [
+    experience,
+    industries_str,
+    position,
+    assignment_str,
+    work_str,
+    professionalprofile,
+    uid,
+  ];
+
+  const response = await updateQuery('userprofile', myquery, value);
+  return response;
 }
 
 async function getUserDetails(email) {

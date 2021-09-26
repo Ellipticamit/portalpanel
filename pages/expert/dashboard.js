@@ -1,99 +1,62 @@
+import {useState, useEffect} from 'react';
 import PageBanner from 'components/PageBanner';
+import CheckProfile from 'elements/Dashboard/CheckProfile';
+import {userService} from 'services/user.services';
+import SideBar from 'elements/Dashboard/SideBar';
+import ProfileTabs from 'elements/Dashboard/ProfileTabs';
 
 function dashboard(props) {
+  const [profileData, setProfileData] = useState({});
+  const [showCheckProfile, setShowCheckProfile] = useState(false);
+
+  const {id, first_name, middle_name, last_name} = userService.userValue;
+
+  let name = first_name;
+  if (middle_name) name += ' ' + middle_name;
+  if (last_name) name += ' ' + last_name;
+
+  useEffect(async () => {
+    await userService
+      .getUserProfile(id)
+      .then((response) => {
+        const {data} = response;
+        if (data.length === 0) {
+          showCheckProfile(true);
+          setProfileData({});
+        } else {
+          setProfileData(data);
+        }
+      })
+      .catch((error) => {});
+  }, []);
+
   return (
     <section className='dashboard'>
       <PageBanner img_name='bnr1.jpg' heading='Dashboard' sub_heading='' />
-      <div className='page__inner__content'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-xl-4 col-lg-4 m-b30'>
-              <aside className='side-bar sticky-top'>
-                <div className='widget widget_archive'>
-                  <h2 className='widget-title'>Profile Details</h2>
-                  <ul>
-                    <li>
-                      <a href='#'>Upload Resume</a>
-                    </li>
-                    <li>
-                      <a href='#'>Edit Profile</a>
-                    </li>
-                    <li>
-                      <a href='#'>Add Education</a>
-                    </li>
-                    <li>
-                      <a href='#'>Add Company</a>
-                    </li>
-                  </ul>
-                </div>
-              </aside>
-            </div>
-            <div className='col-xl-8 col-lg-8 m-b50'>
-              {' '}
-              <div className='dlab-blog style-1 bg-white text-center m-b50'>
-                <div className='dlab-media dlab-img-effect zoom'>
-                  <img src='images/blog/default/thum1.jpg' alt='' />
-                </div>
-                <div className='dlab-info'>
-                  <h4 className='dlab-title'>
-                    <a href='/blog-details-1'>
-                      Fusce sem ligula, imperdiet sed nisi sit amet, euismod
-                      posuere dolor. Vestibulum in ante ut tortor eleifend
-                      venenatis.
-                    </a>
-                  </h4>
-                  <p className='m-b0'>
-                    Sed auctor magna lacus, in placerat nisl sollicitudin ut.
-                    Morbi feugiat ante velit, eget convallis arcu iaculis vel.
-                    Fusce in rhoncus quam. Integer dolor arcu, ullamcorper sed
-                    auctor vitae, porttitor quis erat. Donec sit amet semper
-                    massa.
-                  </p>
-                  <div className='dlab-meta meta-bottom'>
-                    <ul>
-                      <li className='post-date'>
-                        <i className='flaticon-clock m-r10'></i>7 March, 2020
-                      </li>
-                      <li className='post-author'>
-                        <i className='flaticon-user m-r10'></i>By Johne Doe
-                      </li>
-                      <li className='post-comment'>
-                        <a href='javascript:void(0);'>
-                          <i className='flaticon-speech-bubble'></i>
-                          <span>15</span>
-                        </a>
-                      </li>
-                      <li className='post-share'>
-                        <i className='flaticon-share'></i>
-                        <ul>
-                          <li>
-                            <a
-                              className='fa fa-facebook'
-                              href='https://en-gb.facebook.com/'
-                            ></a>
-                          </li>
-                          <li>
-                            <a
-                              className='fa fa-twitter'
-                              href='https://twitter.com/login?lang=en'
-                            ></a>
-                          </li>
-                          <li>
-                            <a
-                              className='fa fa-linkedin'
-                              href='https://www.linkedin.com/login'
-                            ></a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+      <div className='container'>
+        <div className='newrow dashboard__content'>
+          <div className='col-new-4 bgl-white sidebar'>
+            <div className='user__img'>
+              <div className='user__img_container'>
+                <img src='/images/userimg.png' alt='' />
               </div>
+              <div className=''>{name}</div>
             </div>
+            <div className='sidebar__item'>
+              <div className='text'>Project Completed</div>
+              <div className='value'>24</div>
+            </div>
+            <div className='sidebar__item'>
+              <div className='text'>Money Earned</div>
+              <div className='value'>Rs. 2,400</div>
+            </div>
+          </div>
+          <div className='col-new-8 bgl-white dashboard_main_content'>
+            <ProfileTabs profiledata={profileData} />
           </div>
         </div>
       </div>
+      {showCheckProfile && <CheckProfile uid={id} />}
     </section>
   );
 }

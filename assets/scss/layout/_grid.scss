@@ -1,0 +1,14 @@
+.newrow {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5%;
+  justify-content: space-between;
+
+  .col-new-4 {
+    flex-basis: 30%;
+  }
+
+  .col-new-8 {
+    flex-basis: 65%;
+  }
+}

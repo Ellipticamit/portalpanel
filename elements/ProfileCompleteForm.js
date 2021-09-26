@@ -9,7 +9,14 @@ import Select from 'react-select';
 import {userService} from 'services/user.services';
 import {getFileExtension} from 'utility/helper';
 
-function ProfileCompleteForm({uid}) {
+function ProfileCompleteForm({
+  uid,
+  resumeupload = true,
+  colstyle = 'col-md-6',
+  values = {},
+  profilebutton = 'Submit',
+  submittype = 'register',
+}) {
   const router = useRouter();
   const {
     register,
@@ -21,6 +28,8 @@ function ProfileCompleteForm({uid}) {
   const [fileName, setFileName] = useState(null);
   const [fileExtError, setFileExtError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(null);
+  const [errMsg, setErrMsg] = useState(null);
 
   const uploadToClient = async (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -32,12 +41,7 @@ function ProfileCompleteForm({uid}) {
       if (fileExt === 'pdf' || fileExt === 'docx' || fileExt === 'doc') {
         const config = {
           headers: {'content-type': 'multipart/form-data'},
-          onUploadProgress: (event) => {
-            console.log(
-              `Current progress:`,
-              Math.round((event.loaded * 100) / event.total)
-            );
-          },
+          onUploadProgress: (event) => {},
         };
         const formData = new FormData();
         formData.append('resume', i);
@@ -55,13 +59,29 @@ function ProfileCompleteForm({uid}) {
     }
   };
 
-  const [errMsg, setErrMsg] = useState(null);
-
   const onSubmit = async (formData) => {
     setLoading(true);
     setErrMsg('');
     formData['uid'] = uid;
-    formData['resume'] = fileName;
+
+    if (submittype === 'register') registerSubmit(formData);
+    else updateSubmit(formData);
+  };
+
+  const updateSubmit = async (data) => {
+    userService
+      .updateProfile(data)
+      .then((response) => {
+        const {message} = response;
+        if (message === 'success')
+          setSuccessMsg('Profile Details Successfully Updated.');
+      })
+      .catch((error) => {});
+    setLoading(false);
+  };
+
+  const registerSubmit = async (data) => {
+    data['resume'] = fileName;
 
     userService
       .completeProfile(formData)
@@ -91,9 +111,17 @@ function ProfileCompleteForm({uid}) {
           </div>
         )}
 
+        {successMsg && (
+          <div className='col-md-12 m-b4'>
+            <div className='alert alert-success' role='alert'>
+              {successMsg}
+            </div>
+          </div>
+        )}
+
         {UserMultiSelectFields.map((item) => {
           return (
-            <div className='col-md-6' key={item.label}>
+            <div className={colstyle} key={item.label}>
               <div className='form__group m-b20'>
                 <label>
                   {item.label} {true && <span className='required'>*</span>}
@@ -102,9 +130,12 @@ function ProfileCompleteForm({uid}) {
                   <Controller
                     control={control}
                     name={item.name}
+                    defaultValue={values[item.name]['val']}
                     render={({field: {onChange, ref}}) => (
                       <Select
                         inputRef={ref}
+                        defaultValue={values[item.name]['defaultValue']}
+                        // value={values[item.name]}
                         options={item.options}
                         onChange={(val) => onChange(val.map((c) => c.value))}
                         isMulti
@@ -116,10 +147,13 @@ function ProfileCompleteForm({uid}) {
                   <Controller
                     control={control}
                     name={item.name}
+                    defaultValue={values[item.name].value}
                     render={({field: {onChange, ref}}) => (
                       <Select
                         inputRef={ref}
                         options={item.options}
+                        defaultValue={values[item.name]}
+                        // value={values[item.name]}
                         onChange={(val) => onChange(val.value)}
                         isMulti={item.ismulti}
                       />
@@ -138,26 +172,28 @@ function ProfileCompleteForm({uid}) {
           );
         })}
 
-        <div className='col-sm-6'>
-          <div className='mb-3'>
-            <label htmlFor='formFile' className='form-label'>
-              Upload Resume (if availabel)
-            </label>
-            <div className='input-group'>
-              <input
-                className='form-control file__input'
-                type='file'
-                id='formFile'
-                name='resume'
-                onChange={uploadToClient}
-                accept='.pdf,.doc,.docx'
-              />
+        {resumeupload && (
+          <div className='col-sm-6'>
+            <div className='mb-3'>
+              <label htmlFor='formFile' className='form-label'>
+                Upload Resume (if availabel)
+              </label>
+              <div className='input-group'>
+                <input
+                  className='form-control file__input'
+                  type='file'
+                  id='formFile'
+                  name='resume'
+                  onChange={uploadToClient}
+                  accept='.pdf,.doc,.docx'
+                />
+              </div>
+              {fileExtError && (
+                <div className='validation_msg m-t5'>{fileExtError}</div>
+              )}
             </div>
-            {fileExtError && (
-              <div className='validation_msg m-t5'>{fileExtError}</div>
-            )}
           </div>
-        </div>
+        )}
 
         <div className='col-sm-12'>
           <TextArea
@@ -167,6 +203,7 @@ function ProfileCompleteForm({uid}) {
             iconname='address-card'
             placeholder='Enter brief professional profile...'
             showicon={false}
+            propvalue={values['professionalprofile']}
           />
         </div>
 
@@ -184,7 +221,8 @@ function ProfileCompleteForm({uid}) {
               propvalue='Submit'
               className='btn2 btn2-link d-inline-flex align-items-center'
             >
-              <i className='fa fa-angle-right m-r10'></i>Submit
+              <i className='fa fa-angle-right m-r10'></i>
+              {profilebutton}
             </button>
           )}
         </div>

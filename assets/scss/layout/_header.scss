@@ -7,7 +7,7 @@
 
 .home__header,
 .header__transparent .is-fixed {
-  padding: 10px 0px;
+  padding: 22px 0px;
   .menu {
     &__link {
       a {
@@ -50,6 +50,7 @@ header {
     transition: all 0.5s;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    z-index: 100000;
   }
 
   .menu__container {

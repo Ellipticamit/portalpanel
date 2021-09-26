@@ -1,4 +1,5 @@
 import 'assets/css/bootstrap.min.css';
+import 'react-tabs/style/react-tabs.css';
 import 'assets/css/global.css';
 import {useState, useEffect} from 'react';
 import Head from 'next/head';

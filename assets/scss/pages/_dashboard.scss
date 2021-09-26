@@ -1,0 +1,51 @@
+.dashboard {
+  padding-bottom: 50px;
+  &__content {
+    position: relative;
+    z-index: 100;
+    margin-top: -55px;
+  }
+
+  .user__img {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 1px solid $grey;
+
+    &_container {
+      position: relative;
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 15px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
+    }
+  }
+
+  .sidebar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    &__item {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid $grey;
+    }
+  }
+
+  &_main_content {
+    border: 1px solid $grey;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+}

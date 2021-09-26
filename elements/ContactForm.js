@@ -30,7 +30,6 @@ function ContactForm(props) {
       .catch((error) => {
         setLoading(false);
         window.scrollTo(0, 0);
-        console.log(error);
       });
   };
 

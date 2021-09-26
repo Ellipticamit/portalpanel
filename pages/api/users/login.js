@@ -31,6 +31,7 @@ async function login(req, res) {
     middle_name: user.middle_name,
     surname: user.surname,
     email: user.email,
+    mobile: user.mobile,
     token,
   });
 }

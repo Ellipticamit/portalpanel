@@ -1,7 +1,16 @@
+import {useRouter} from 'next/router';
 import PageBanner from 'components/PageBanner';
 import LoginForm from 'elements/LoginForm';
+import {userService} from 'services/user.services';
 
 function login(props) {
+  const router = useRouter();
+  const id = userService.userValue && userService.userValue.id;
+
+  if (id) {
+    const returnUrl = router.query.returnUrl || '/expert/dashboard';
+    router.push(returnUrl);
+  }
   return (
     <section className='login'>
       <PageBanner img_name='bnr1.jpg' heading='Login' sub_heading='' />

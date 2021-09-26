@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, {useState} from 'react';
 import CountryCode from 'components/CountryCode';
 
 function Input({
@@ -11,7 +10,10 @@ function Input({
   required = false,
   register,
   errors,
+  propvalue = '',
 }) {
+  const [value, setValue] = useState(propvalue);
+
   return (
     <div className='form__group'>
       <label htmlFor={label}>
@@ -38,6 +40,8 @@ function Input({
                 message: 'Enter a valid e-mail address',
               },
             })}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
         ) : name === 'mobile' ? (
           <>
@@ -63,6 +67,8 @@ function Input({
                   message: 'Enter valid mobile number (10 digit)',
                 },
               })}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
             />
           </>
         ) : required ? (
@@ -75,6 +81,8 @@ function Input({
             {...register(name, {
               required: `${label} is required`,
             })}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
         ) : (
           <input
@@ -84,6 +92,8 @@ function Input({
             placeholder={placeholder}
             type={type}
             {...register(name)}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
         )}
       </div>

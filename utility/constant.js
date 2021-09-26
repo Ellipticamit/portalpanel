@@ -49,7 +49,7 @@ const passwordField = {
 };
 const firstName = nameField('First Name', 'first_name', true);
 const middleName = nameField('Middle Name', 'middle_name', false);
-const surName = nameField('Surname Name', 'surname', false);
+const surName = nameField('Surname', 'surname', false);
 const ExpertRegisterFields = [
   {
     ...firstName,
@@ -70,6 +70,26 @@ const ExpertRegisterFields = [
   },
   {
     ...passwordField,
+  },
+];
+
+const ExpertAccountDetailsFields = [
+  {
+    ...firstName,
+  },
+  {
+    ...middleName,
+  },
+  {
+    ...surName,
+  },
+  {
+    ...mobileField,
+    label: 'Contact Number',
+    placeholder: 'Enter Contact Number...',
+  },
+  {
+    ...emailField,
   },
 ];
 
@@ -167,9 +187,16 @@ const ClientRegisterFields = [
   },
 ];
 
+const ExpertProfileDetailsFields = [];
+
 export {
   ExpertRegisterFields,
   UserProfileFields,
   ClientRegisterFields,
   UserMultiSelectFields,
+  ExpertAccountDetailsFields,
+  ExpertProfileDetailsFields,
+  experienceOptions,
+  workOptions,
+  assignmentOptions,
 };
